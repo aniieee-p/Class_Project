@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+</head>
+<body>
+    <%- include("header") %>
+    <h2>Available Courses</h2>
+
+    <input type="text" name="name" />
+    <button onclick="">ADD</button>
+
+    <ul id="list">
+
+    </ul>
+    <script>
+        async function loadCourse() {
+            const res = await fetch();
+            const data = res.json();
+        }
+    </script>
+</body>
+</html>
