@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      header {
+        background: #0f172a;
+        color: white;
+      }
+
+      .top-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 60px;
+        border-bottom: 1px solid #1e293b;
+      }
+
+      .logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: #22c55e;
+      }
+
+      .search-box input {
+        width: 350px;
+        padding: 8px 12px;
+        border-radius: 6px;
+        border: none;
+        background: #1e293b;
+        color: white;
+      }
+
+      .auth-buttons {
+        display: flex;
+        gap: 10px;
+      }
+
+      .btn {
+        padding: 6px 14px;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+      }
+
+      .login {
+        background: transparent;
+        border: 1px solid #22c55e;
+        color: white;
+      }
+
+      .signup {
+        background: #22c55e;
+        color: black;
+      }
+
+      nav {
+        padding: 10px 60px;
+      }
+
+      nav ul {
+        display: flex;
+        list-style: none;
+        gap: 30px;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: #e5e7eb;
+        font-size: 15px;
+        transition: 0.3s;
+      }
+
+      nav a:hover {
+        color: #22c55e;
+      }
+    </style>
+
+    <header>
+      <div class="top-bar">
+        <div class="logo">CodeLearn</div>
+
+        <div class="search-box">
+          <input type="text" placeholder="Search courses, problems..." />
+        </div>
+
+        <div class="auth-buttons">
+          <a href="/login"><button class="btn login">Login</button></a>
+          <a href="/register"><button class="btn signup">Sign Up</button></a>
+        </div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/courses">Courses</a></li>
+          <li><a href="/practice">Practice</a></li>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+  </body>
+</html>
