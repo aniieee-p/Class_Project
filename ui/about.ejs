@@ -9,111 +9,75 @@
   <style>
     body { background: #09090b; font-family: 'Inter', sans-serif; }
     .mono { font-family: 'JetBrains Mono', monospace; }
-    .grid-bg {
-      background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-      background-size: 40px 40px;
-    }
+    .grid-bg { background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 40px 40px; }
     .acard { transition: transform 0.2s ease, border-color 0.2s, box-shadow 0.2s; }
     .acard:hover { transform: translateY(-3px); }
     .card-violet:hover  { border-color: #a78bfa; box-shadow: 0 0 28px rgba(167,139,250,0.15); }
     .card-amber:hover   { border-color: #f59e0b; box-shadow: 0 0 28px rgba(245,158,11,0.15); }
-    .card-pink:hover    { border-color: #f472b6; box-shadow: 0 0 28px rgba(244,114,182,0.15); }
     .card-sky:hover     { border-color: #38bdf8; box-shadow: 0 0 28px rgba(56,189,248,0.15); }
     .card-emerald:hover { border-color: #34d399; box-shadow: 0 0 28px rgba(52,211,153,0.15); }
-    .card-orange:hover  { border-color: #fb923c; box-shadow: 0 0 28px rgba(251,146,60,0.15); }
-    .prog-bar  { height: 2px; border-radius: 1px; background: #27272a; overflow: hidden; }
+    .prog-bar { height: 2px; border-radius: 1px; background: #27272a; overflow: hidden; }
     .prog-fill { height: 100%; border-radius: 1px; }
   </style>
 </head>
 <body class="text-zinc-100 min-h-screen">
   <%- include("header") %>
 
-  <!-- Hero -->
-  <section class="grid-bg py-24 px-6 md:px-16 border-b border-zinc-800">
+  <section class="grid-bg py-16 md:py-24 px-4 sm:px-6 md:px-16 border-b border-zinc-800">
     <div class="max-w-7xl mx-auto">
       <p class="mono text-xs text-zinc-500 mb-4">// about.md</p>
-      <h1 class="mono text-3xl sm:text-5xl md:text-6xl font-bold text-white mb-6 max-w-3xl leading-tight">Built by devs,<br/>for devs.</h1>
-      <p class="text-zinc-400 text-base md:text-lg max-w-xl leading-relaxed">CodeLearn is a developer-first platform focused on practical, hands-on learning. No theory overload — just real skills.</p>
+      <h1 class="mono text-3xl sm:text-5xl md:text-6xl font-bold text-white mb-5 leading-tight">Built by devs,<br/>for devs.</h1>
+      <p class="text-zinc-400 text-sm sm:text-base md:text-lg max-w-xl leading-relaxed">CodeLearn is a developer-first platform focused on practical, hands-on learning. No theory overload — just real skills.</p>
     </div>
   </section>
 
-  <!-- Stats terminal -->
-  <section class="max-w-7xl mx-auto px-6 md:px-16 py-16 border-b border-zinc-800">
-    <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-8 mono text-sm">
-      <div class="text-zinc-500 mb-6 text-xs">~ codelearn --about --stats</div>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-        <div>
-          <div class="text-4xl font-bold text-violet-400">10k+</div>
-          <div class="text-zinc-500 text-xs mt-1">students</div>
-          <div class="prog-bar mt-2"><div class="prog-fill bg-violet-400" style="width:90%"></div></div>
-        </div>
-        <div>
-          <div class="text-4xl font-bold text-amber-400">50+</div>
-          <div class="text-zinc-500 text-xs mt-1">courses</div>
-          <div class="prog-bar mt-2"><div class="prog-fill bg-amber-400" style="width:70%"></div></div>
-        </div>
-        <div>
-          <div class="text-4xl font-bold text-pink-400">200+</div>
-          <div class="text-zinc-500 text-xs mt-1">problems</div>
-          <div class="prog-bar mt-2"><div class="prog-fill bg-pink-400" style="width:80%"></div></div>
-        </div>
-        <div>
-          <div class="text-4xl font-bold text-emerald-400">98%</div>
-          <div class="text-zinc-500 text-xs mt-1">satisfaction</div>
-          <div class="prog-bar mt-2"><div class="prog-fill bg-emerald-400" style="width:98%"></div></div>
-        </div>
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 md:px-16 py-12 md:py-16 border-b border-zinc-800">
+    <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-6 md:p-8 mono">
+      <div class="text-zinc-500 mb-5 text-xs">~ codelearn --about --stats</div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+        <div><div class="text-2xl md:text-4xl font-bold text-violet-400">10k+</div><div class="text-zinc-500 text-xs mt-1">students</div><div class="prog-bar mt-2"><div class="prog-fill bg-violet-400" style="width:90%"></div></div></div>
+        <div><div class="text-2xl md:text-4xl font-bold text-amber-400">50+</div><div class="text-zinc-500 text-xs mt-1">courses</div><div class="prog-bar mt-2"><div class="prog-fill bg-amber-400" style="width:70%"></div></div></div>
+        <div><div class="text-2xl md:text-4xl font-bold text-pink-400">200+</div><div class="text-zinc-500 text-xs mt-1">problems</div><div class="prog-bar mt-2"><div class="prog-fill bg-pink-400" style="width:80%"></div></div></div>
+        <div><div class="text-2xl md:text-4xl font-bold text-emerald-400">98%</div><div class="text-zinc-500 text-xs mt-1">satisfaction</div><div class="prog-bar mt-2"><div class="prog-fill bg-emerald-400" style="width:98%"></div></div></div>
       </div>
     </div>
   </section>
 
-  <!-- Mission -->
-  <section class="max-w-7xl mx-auto px-6 md:px-16 py-20 grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 md:px-16 py-14 md:py-20 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-start">
     <div>
       <p class="mono text-xs text-zinc-500 mb-3">// mission_statement</p>
-      <h2 class="mono text-3xl font-bold text-white mb-5">Why CodeLearn?</h2>
-      <p class="text-zinc-400 leading-relaxed mb-4">We believe learning to code should feel like building, not studying. Every course is structured around real output — something you can show, deploy, or ship.</p>
-      <p class="text-zinc-400 leading-relaxed">From DSA to system design, we cover the full stack of what it takes to become a working engineer.</p>
+      <h2 class="mono text-2xl md:text-3xl font-bold text-white mb-5">Why CodeLearn?</h2>
+      <p class="text-zinc-400 leading-relaxed mb-4 text-sm md:text-base">We believe learning to code should feel like building, not studying. Every course is structured around real output — something you can show, deploy, or ship.</p>
+      <p class="text-zinc-400 leading-relaxed text-sm md:text-base">From DSA to system design, we cover the full stack of what it takes to become a working engineer.</p>
     </div>
-
-    <!-- Feature cards -->
     <div class="grid grid-cols-2 gap-3">
-
-      <div class="acard card-violet bg-zinc-900 border border-zinc-800 rounded-xl p-5 group cursor-pointer"
-           style="background: linear-gradient(145deg, #18181b, #1e1427);">
-        <div class="text-2xl mb-3">🎯</div>
-        <h3 class="mono font-semibold text-white mb-1 group-hover:text-violet-300 transition">Goal-Oriented</h3>
+      <div class="acard card-violet bg-zinc-900 border border-zinc-800 rounded-xl p-4 sm:p-5 group cursor-pointer" style="background: linear-gradient(145deg, #18181b, #1e1427);">
+        <div class="text-xl sm:text-2xl mb-3">🎯</div>
+        <h3 class="mono font-semibold text-white mb-1 text-sm group-hover:text-violet-300 transition">Goal-Oriented</h3>
         <p class="text-zinc-500 text-xs leading-relaxed">Every course ends with something you built.</p>
         <div class="prog-bar mt-3"><div class="prog-fill bg-violet-400" style="width:85%"></div></div>
       </div>
-
-      <div class="acard card-amber bg-zinc-900 border border-zinc-800 rounded-xl p-5 group cursor-pointer"
-           style="background: linear-gradient(145deg, #18181b, #1c1608);">
-        <div class="text-2xl mb-3">⚡</div>
-        <h3 class="mono font-semibold text-white mb-1 group-hover:text-amber-300 transition">No Bloat</h3>
+      <div class="acard card-amber bg-zinc-900 border border-zinc-800 rounded-xl p-4 sm:p-5 group cursor-pointer" style="background: linear-gradient(145deg, #18181b, #1c1608);">
+        <div class="text-xl sm:text-2xl mb-3">⚡</div>
+        <h3 class="mono font-semibold text-white mb-1 text-sm group-hover:text-amber-300 transition">No Bloat</h3>
         <p class="text-zinc-500 text-xs leading-relaxed">Concise, dense lessons. No 10-hour intros.</p>
         <div class="prog-bar mt-3"><div class="prog-fill bg-amber-400" style="width:95%"></div></div>
       </div>
-
-      <div class="acard card-sky bg-zinc-900 border border-zinc-800 rounded-xl p-5 group cursor-pointer"
-           style="background: linear-gradient(145deg, #18181b, #0c1a24);">
-        <div class="text-2xl mb-3">🤝</div>
-        <h3 class="mono font-semibold text-white mb-1 group-hover:text-sky-300 transition">Community</h3>
+      <div class="acard card-sky bg-zinc-900 border border-zinc-800 rounded-xl p-4 sm:p-5 group cursor-pointer" style="background: linear-gradient(145deg, #18181b, #0c1a24);">
+        <div class="text-xl sm:text-2xl mb-3">🤝</div>
+        <h3 class="mono font-semibold text-white mb-1 text-sm group-hover:text-sky-300 transition">Community</h3>
         <p class="text-zinc-500 text-xs leading-relaxed">Learn alongside 10k+ other engineers.</p>
         <div class="prog-bar mt-3"><div class="prog-fill bg-sky-400" style="width:75%"></div></div>
       </div>
-
-      <div class="acard card-emerald bg-zinc-900 border border-zinc-800 rounded-xl p-5 group cursor-pointer"
-           style="background: linear-gradient(145deg, #18181b, #0a1f18);">
-        <div class="text-2xl mb-3">🔓</div>
-        <h3 class="mono font-semibold text-white mb-1 group-hover:text-emerald-300 transition">Free Core</h3>
+      <div class="acard card-emerald bg-zinc-900 border border-zinc-800 rounded-xl p-4 sm:p-5 group cursor-pointer" style="background: linear-gradient(145deg, #18181b, #0a1f18);">
+        <div class="text-xl sm:text-2xl mb-3">🔓</div>
+        <h3 class="mono font-semibold text-white mb-1 text-sm group-hover:text-emerald-300 transition">Free Core</h3>
         <p class="text-zinc-500 text-xs leading-relaxed">Core content is always free. No paywalls.</p>
         <div class="prog-bar mt-3"><div class="prog-fill bg-emerald-400" style="width:100%"></div></div>
       </div>
-
     </div>
   </section>
 
   <%- include("footer") %>
 </body>
 </html>
-

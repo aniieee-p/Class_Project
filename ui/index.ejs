@@ -6,114 +6,55 @@
   <title><%= title %></title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            mono: ['JetBrains Mono', 'monospace'],
-            sans: ['Inter', 'sans-serif'],
-          },
-          colors: {
-            zinc: {
-              950: '#09090b',
-              900: '#18181b',
-              800: '#27272a',
-              700: '#3f3f46',
-              400: '#a1a1aa',
-              300: '#d4d4d8',
-              100: '#f4f4f5',
-            }
-          }
-        }
-      }
-    }
-  </script>
   <style>
     * { box-sizing: border-box; }
     body { background: #09090b; font-family: 'Inter', sans-serif; }
-
-    /* Grid background */
     .grid-bg {
-      background-image:
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
       background-size: 40px 40px;
     }
-
-    /* Spotlight */
-    .spotlight {
-      background: radial-gradient(ellipse 80% 50% at 20% 40%, rgba(99,102,241,0.12) 0%, transparent 70%);
-    }
-
-    /* Cursor blink */
+    .spotlight { background: radial-gradient(ellipse 80% 50% at 20% 40%, rgba(99,102,241,0.12) 0%, transparent 70%); }
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-    .cursor::after {
-      content: '_';
-      animation: blink 1s step-end infinite;
-      color: #6366f1;
-    }
-
-    /* Card styles */
+    .cursor::after { content:'_'; animation: blink 1s step-end infinite; color: #a78bfa; }
     .bento-card { transition: transform 0.2s ease, border-color 0.2s, box-shadow 0.2s; }
     .bento-card:hover { transform: translateY(-2px); }
-
     .card-violet:hover  { border-color: #a78bfa; box-shadow: 0 0 28px rgba(167,139,250,0.15); }
     .card-amber:hover   { border-color: #f59e0b; box-shadow: 0 0 28px rgba(245,158,11,0.15); }
     .card-pink:hover    { border-color: #f472b6; box-shadow: 0 0 28px rgba(244,114,182,0.15); }
     .card-sky:hover     { border-color: #38bdf8; box-shadow: 0 0 28px rgba(56,189,248,0.15); }
     .card-emerald:hover { border-color: #34d399; box-shadow: 0 0 28px rgba(52,211,153,0.15); }
     .card-orange:hover  { border-color: #fb923c; box-shadow: 0 0 28px rgba(251,146,60,0.15); }
-
-    /* Tag badges */
     .badge { font-family: 'JetBrains Mono', monospace; font-size: 10px; padding: 2px 8px; border-radius: 3px; }
     .badge-green  { background: rgba(52,211,153,0.1);  color: #34d399; border: 1px solid rgba(52,211,153,0.2); }
     .badge-yellow { background: rgba(245,158,11,0.1);  color: #f59e0b; border: 1px solid rgba(245,158,11,0.2); }
     .badge-red    { background: rgba(248,113,113,0.1); color: #f87171; border: 1px solid rgba(248,113,113,0.2); }
-
-    /* Progress bar */
     .prog-bar { height: 2px; border-radius: 1px; background: #27272a; overflow: hidden; }
     .prog-fill { height: 100%; border-radius: 1px; transition: width 0.6s ease; }
-
-    /* Command palette */
-    .cmd-bar { background: rgba(39,39,42,0.8); backdrop-filter: blur(12px); }
-
     @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
     .fade-up { animation: fadeUp 0.6s ease forwards; }
   </style>
 </head>
-<body class="text-zinc-100 min-h-screen dark">
-
+<body class="text-zinc-100 min-h-screen">
   <%- include("header") %>
 
   <!-- Hero -->
-  <section class="grid-bg spotlight relative min-h-[90vh] flex items-center px-6 md:px-16 overflow-hidden">
+  <section class="grid-bg spotlight relative min-h-[85vh] flex items-center px-4 sm:px-6 md:px-16 overflow-hidden py-16">
     <div class="max-w-7xl w-full mx-auto fade-up">
-
-      <div class="font-mono text-xs text-zinc-500 mb-6 flex items-center gap-2">
+      <div class="font-mono text-xs text-zinc-500 mb-5 flex items-center gap-2">
         <span class="w-2 h-2 rounded-full bg-green-500 inline-block"></span>
         codelearn.dev ~ learning environment ready
       </div>
-
-      <h1 class="font-mono text-3xl sm:text-5xl md:text-7xl font-bold leading-tight text-white mb-6 max-w-4xl cursor">
+      <h1 class="font-mono text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-white mb-5 cursor">
         Learn to build.<br/>Ship real things
       </h1>
-
-      <p class="text-zinc-400 text-base md:text-lg max-w-xl mb-8 leading-relaxed">
+      <p class="text-zinc-400 text-sm sm:text-base md:text-lg max-w-xl mb-8 leading-relaxed">
         A developer-first learning platform. No fluff — just structured paths, real code, and hands-on practice.
       </p>
-
-      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3 mb-12">
-        <a href="/register" class="font-mono text-sm px-5 py-2.5 rounded-md bg-white text-zinc-950 hover:bg-zinc-200 transition font-semibold w-full sm:w-auto text-center">
-          get_started()
-        </a>
-        <a href="/courses" class="font-mono text-sm px-5 py-2.5 rounded-md border border-zinc-700 text-zinc-300 hover:border-zinc-500 transition w-full sm:w-auto text-center">
-          browse_courses →
-        </a>
+      <div class="flex flex-col sm:flex-row gap-3 mb-10">
+        <a href="/register" class="font-mono text-sm px-5 py-3 rounded-md bg-white text-zinc-950 hover:bg-zinc-200 transition font-semibold text-center">get_started()</a>
+        <a href="/courses" class="font-mono text-sm px-5 py-3 rounded-md border border-zinc-700 text-zinc-300 hover:border-zinc-500 transition text-center">browse_courses →</a>
       </div>
-
-      <div class="flex flex-wrap items-center gap-4 text-zinc-600 font-mono text-xs">
+      <div class="flex flex-wrap gap-3 sm:gap-6 text-zinc-600 font-mono text-xs">
         <span>// 10,000+ students</span>
         <span>// 50+ courses</span>
         <span>// free to start</span>
@@ -122,21 +63,19 @@
   </section>
 
   <!-- Bento Grid -->
-  <section class="max-w-7xl mx-auto px-6 md:px-16 py-24">
-
-    <div class="flex items-center justify-between mb-12">
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 md:px-16 py-16 md:py-24">
+    <div class="flex items-center justify-between mb-8 md:mb-12">
       <div>
         <p class="font-mono text-xs text-zinc-500 mb-2">// popular_courses</p>
-        <h2 class="font-mono text-2xl font-bold text-white">Popular Courses</h2>
+        <h2 class="font-mono text-xl md:text-2xl font-bold text-white">Popular Courses</h2>
       </div>
       <a href="/courses" class="font-mono text-xs text-zinc-500 hover:text-white transition">view all →</a>
     </div>
 
-    <!-- Bento layout -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 auto-rows-auto">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
 
-      <!-- Large card — Data Structures (violet) -->
-      <div class="bento-card card-violet sm:col-span-2 sm:row-span-2 bg-zinc-900 border border-zinc-800 rounded-xl p-7 flex flex-col justify-between cursor-pointer group"
+      <!-- Data Structures — large -->
+      <div class="bento-card card-violet sm:col-span-2 sm:row-span-2 bg-zinc-900 border border-zinc-800 rounded-xl p-6 sm:p-7 flex flex-col justify-between cursor-pointer group min-h-[200px] sm:min-h-[380px]"
            style="background: linear-gradient(145deg, #18181b 60%, #1e1427);">
         <div>
           <div class="flex items-center justify-between mb-4">
@@ -144,8 +83,8 @@
             <span class="font-mono text-xs text-zinc-700">01</span>
           </div>
           <div class="text-2xl mb-3">🗂️</div>
-          <h3 class="font-mono text-2xl font-bold text-white mb-3 group-hover:text-violet-300 transition">Data Structures</h3>
-          <p class="text-zinc-400 text-sm leading-relaxed">Arrays, stacks, queues, trees and graphs. The foundation of every technical interview.</p>
+          <h3 class="font-mono text-xl sm:text-2xl font-bold text-white mb-3 group-hover:text-violet-300 transition">Data Structures</h3>
+          <p class="text-zinc-400 text-sm leading-relaxed hidden sm:block">Arrays, stacks, queues, trees and graphs. The foundation of every technical interview.</p>
         </div>
         <div>
           <div class="prog-bar mb-3"><div class="prog-fill bg-violet-400" style="width:72%"></div></div>
@@ -156,8 +95,8 @@
         </div>
       </div>
 
-      <!-- Algorithms (amber) -->
-      <div class="bento-card card-amber bg-zinc-900 border border-zinc-800 rounded-xl p-6 flex flex-col justify-between cursor-pointer group"
+      <!-- Algorithms -->
+      <div class="bento-card card-amber bg-zinc-900 border border-zinc-800 rounded-xl p-5 sm:p-6 flex flex-col justify-between cursor-pointer group min-h-[160px]"
            style="background: linear-gradient(145deg, #18181b, #1c1608);">
         <div>
           <div class="flex items-center justify-between mb-3">
@@ -165,16 +104,16 @@
             <span class="font-mono text-xs text-zinc-700">02</span>
           </div>
           <div class="text-xl mb-2">⚙️</div>
-          <h3 class="font-mono text-lg font-bold text-white group-hover:text-amber-300 transition">Algorithms</h3>
+          <h3 class="font-mono text-base sm:text-lg font-bold text-white group-hover:text-amber-300 transition">Algorithms</h3>
         </div>
-        <div class="flex items-center justify-between">
+        <div class="flex items-center justify-between mt-3">
           <div class="prog-bar flex-1 mr-3"><div class="prog-fill bg-amber-400" style="width:55%"></div></div>
           <span class="font-mono text-xs text-amber-400 group-hover:translate-x-1 transition-all">→</span>
         </div>
       </div>
 
-      <!-- JavaScript (pink) -->
-      <div class="bento-card card-pink bg-zinc-900 border border-zinc-800 rounded-xl p-6 flex flex-col justify-between cursor-pointer group"
+      <!-- JavaScript -->
+      <div class="bento-card card-pink bg-zinc-900 border border-zinc-800 rounded-xl p-5 sm:p-6 flex flex-col justify-between cursor-pointer group min-h-[160px]"
            style="background: linear-gradient(145deg, #18181b, #1c0f18);">
         <div>
           <div class="flex items-center justify-between mb-3">
@@ -182,16 +121,16 @@
             <span class="font-mono text-xs text-zinc-700">03</span>
           </div>
           <div class="text-xl mb-2">🟨</div>
-          <h3 class="font-mono text-lg font-bold text-white group-hover:text-pink-300 transition">JavaScript</h3>
+          <h3 class="font-mono text-base sm:text-lg font-bold text-white group-hover:text-pink-300 transition">JavaScript</h3>
         </div>
-        <div class="flex items-center justify-between">
+        <div class="flex items-center justify-between mt-3">
           <div class="prog-bar flex-1 mr-3"><div class="prog-fill bg-pink-400" style="width:88%"></div></div>
           <span class="font-mono text-xs text-pink-400 group-hover:translate-x-1 transition-all">→</span>
         </div>
       </div>
 
-      <!-- Node.js wide (sky) -->
-      <div class="bento-card card-sky sm:col-span-2 bg-zinc-900 border border-zinc-800 rounded-xl p-6 flex flex-col justify-between cursor-pointer group"
+      <!-- Node.js wide -->
+      <div class="bento-card card-sky sm:col-span-2 bg-zinc-900 border border-zinc-800 rounded-xl p-5 sm:p-6 flex flex-col justify-between cursor-pointer group min-h-[160px]"
            style="background: linear-gradient(145deg, #18181b, #0c1a24);">
         <div>
           <div class="flex items-center justify-between mb-3">
@@ -200,18 +139,18 @@
           </div>
           <div class="flex items-center gap-3">
             <span class="text-xl">🟢</span>
-            <h3 class="font-mono text-xl font-bold text-white group-hover:text-sky-300 transition">Node.js</h3>
+            <h3 class="font-mono text-lg sm:text-xl font-bold text-white group-hover:text-sky-300 transition">Node.js</h3>
           </div>
-          <p class="text-zinc-500 text-xs mt-2 font-mono">Build backend APIs, handle auth, connect databases.</p>
+          <p class="text-zinc-500 text-xs mt-2 font-mono hidden sm:block">Build backend APIs, handle auth, connect databases.</p>
         </div>
-        <div class="flex items-center justify-between">
+        <div class="flex items-center justify-between mt-3">
           <div class="prog-bar flex-1 mr-3"><div class="prog-fill bg-sky-400" style="width:40%"></div></div>
           <span class="font-mono text-xs text-sky-400 group-hover:translate-x-1 transition-all">→</span>
         </div>
       </div>
 
-      <!-- MongoDB (emerald) -->
-      <div class="bento-card card-emerald bg-zinc-900 border border-zinc-800 rounded-xl p-6 flex flex-col justify-between cursor-pointer group"
+      <!-- MongoDB -->
+      <div class="bento-card card-emerald bg-zinc-900 border border-zinc-800 rounded-xl p-5 sm:p-6 flex flex-col justify-between cursor-pointer group min-h-[160px]"
            style="background: linear-gradient(145deg, #18181b, #0a1f18);">
         <div>
           <div class="flex items-center justify-between mb-3">
@@ -219,16 +158,16 @@
             <span class="font-mono text-xs text-zinc-700">05</span>
           </div>
           <div class="text-xl mb-2">🍃</div>
-          <h3 class="font-mono text-lg font-bold text-white group-hover:text-emerald-300 transition">MongoDB</h3>
+          <h3 class="font-mono text-base sm:text-lg font-bold text-white group-hover:text-emerald-300 transition">MongoDB</h3>
         </div>
-        <div class="flex items-center justify-between">
+        <div class="flex items-center justify-between mt-3">
           <div class="prog-bar flex-1 mr-3"><div class="prog-fill bg-emerald-400" style="width:60%"></div></div>
           <span class="font-mono text-xs text-emerald-400 group-hover:translate-x-1 transition-all">→</span>
         </div>
       </div>
 
-      <!-- System Design (orange) -->
-      <div class="bento-card card-orange bg-zinc-900 border border-zinc-800 rounded-xl p-6 flex flex-col justify-between cursor-pointer group"
+      <!-- System Design -->
+      <div class="bento-card card-orange bg-zinc-900 border border-zinc-800 rounded-xl p-5 sm:p-6 flex flex-col justify-between cursor-pointer group min-h-[160px]"
            style="background: linear-gradient(145deg, #18181b, #1c1008);">
         <div>
           <div class="flex items-center justify-between mb-3">
@@ -236,9 +175,9 @@
             <span class="font-mono text-xs text-zinc-700">06</span>
           </div>
           <div class="text-xl mb-2">🏗️</div>
-          <h3 class="font-mono text-lg font-bold text-white group-hover:text-orange-300 transition">System Design</h3>
+          <h3 class="font-mono text-base sm:text-lg font-bold text-white group-hover:text-orange-300 transition">System Design</h3>
         </div>
-        <div class="flex items-center justify-between">
+        <div class="flex items-center justify-between mt-3">
           <div class="prog-bar flex-1 mr-3"><div class="prog-fill bg-orange-400" style="width:25%"></div></div>
           <span class="font-mono text-xs text-orange-400 group-hover:translate-x-1 transition-all">→</span>
         </div>
@@ -247,27 +186,15 @@
     </div>
   </section>
 
-  <!-- Terminal-style stats -->
-  <section class="max-w-7xl mx-auto px-6 md:px-16 pb-24">
-    <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-8 font-mono text-sm">
+  <!-- Stats -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 md:px-16 pb-16 md:pb-24">
+    <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-6 md:p-8 font-mono text-sm">
       <div class="text-zinc-500 mb-4 text-xs">~ codelearn --stats</div>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-        <div>
-          <div class="text-3xl font-bold text-white">10k+</div>
-          <div class="text-zinc-500 text-xs mt-1">active_students</div>
-        </div>
-        <div>
-          <div class="text-3xl font-bold text-white">50+</div>
-          <div class="text-zinc-500 text-xs mt-1">total_courses</div>
-        </div>
-        <div>
-          <div class="text-3xl font-bold text-white">200+</div>
-          <div class="text-zinc-500 text-xs mt-1">practice_problems</div>
-        </div>
-        <div>
-          <div class="text-3xl font-bold text-white">98%</div>
-          <div class="text-zinc-500 text-xs mt-1">satisfaction_rate</div>
-        </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+        <div><div class="text-2xl md:text-3xl font-bold text-white">10k+</div><div class="text-zinc-500 text-xs mt-1">active_students</div></div>
+        <div><div class="text-2xl md:text-3xl font-bold text-white">50+</div><div class="text-zinc-500 text-xs mt-1">total_courses</div></div>
+        <div><div class="text-2xl md:text-3xl font-bold text-white">200+</div><div class="text-zinc-500 text-xs mt-1">practice_problems</div></div>
+        <div><div class="text-2xl md:text-3xl font-bold text-white">98%</div><div class="text-zinc-500 text-xs mt-1">satisfaction_rate</div></div>
       </div>
     </div>
   </section>
@@ -275,4 +202,3 @@
   <%- include("footer") %>
 </body>
 </html>
-
