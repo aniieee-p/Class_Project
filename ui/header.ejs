@@ -1,118 +1,47 @@
-<!DOCTYPE html>
-<html>
-  <body>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
+<style>
+  .cmd-bar { background: rgba(39,39,42,0.6); backdrop-filter: blur(8px); }
+  .cmd-input { background: rgba(9,9,11,0.8); }
+</style>
 
-      body {
-        font-family: Arial, Helvetica, sans-serif;
-      }
+<header class="sticky top-0 z-50 border-b border-zinc-800 cmd-bar">
+  <div class="max-w-7xl mx-auto px-6 h-12 flex items-center justify-between gap-6">
 
-      header {
-        background: #0f172a;
-        color: white;
-      }
+    <!-- Logo -->
+    <a href="/" class="font-mono text-sm font-bold text-white shrink-0">
+      code<span class="text-indigo-400">learn</span><span class="text-zinc-600">.dev</span>
+    </a>
 
-      .top-bar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 15px 60px;
-        border-bottom: 1px solid #1e293b;
-      }
+    <!-- Command palette style search -->
+    <div class="flex-1 max-w-sm hidden md:flex items-center gap-2 cmd-input border border-zinc-800 rounded-md px-3 py-1.5 text-zinc-500 text-xs font-mono cursor-pointer hover:border-zinc-600 transition">
+      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+      <span>Search courses...</span>
+      <span class="ml-auto flex items-center gap-1 text-zinc-700">
+        <kbd class="px-1 py-0.5 rounded bg-zinc-800 text-zinc-500 text-xs">⌘</kbd>
+        <kbd class="px-1 py-0.5 rounded bg-zinc-800 text-zinc-500 text-xs">K</kbd>
+      </span>
+    </div>
 
-      .logo {
-        font-size: 24px;
-        font-weight: bold;
-        color: #22c55e;
-      }
-
-      .search-box input {
-        width: 350px;
-        padding: 8px 12px;
-        border-radius: 6px;
-        border: none;
-        background: #1e293b;
-        color: white;
-      }
-
-      .auth-buttons {
-        display: flex;
-        gap: 10px;
-      }
-
-      .btn {
-        padding: 6px 14px;
-        border-radius: 6px;
-        border: none;
-        cursor: pointer;
-      }
-
-      .login {
-        background: transparent;
-        border: 1px solid #22c55e;
-        color: white;
-      }
-
-      .signup {
-        background: #22c55e;
-        color: black;
-      }
-
-      nav {
-        padding: 10px 60px;
-      }
-
-      nav ul {
-        display: flex;
-        list-style: none;
-        gap: 30px;
-      }
-
-      nav a {
-        text-decoration: none;
-        color: #e5e7eb;
-        font-size: 15px;
-        transition: 0.3s;
-      }
-
-      nav a:hover {
-        color: #22c55e;
-      }
-    </style>
-
-    <header>
-      <div class="top-bar">
-        <div class="logo">CodeLearn</div>
-
-        <div class="search-box">
-          <input type="text" placeholder="Search courses, problems..." />
-        </div>
-
-        <div class="auth-buttons">
-          <% if (locals.user) { %>
-            <span style="color:white; margin-right:10px;">Hi, <%= user.username %></span>
-            <a href="/logout"><button class="btn login">Logout</button></a>
-          <% } else { %>
-            <a href="/login"><button class="btn login">Login</button></a>
-            <a href="/register"><button class="btn signup">Sign Up</button></a>
-          <% } %>
-        </div>
-      </div>
-      <nav>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/about">About</a></li>
-          <li><a href="/courses">Courses</a></li>
-          <li><a href="/practice">Practice</a></li>
-          <li><a href="/services">Services</a></li>
-          <li><a href="/contact">Contact</a></li>
-        </ul>
+    <!-- Nav + Auth -->
+    <div class="flex items-center gap-5 text-xs font-mono text-zinc-500">
+      <nav class="hidden lg:flex items-center gap-5">
+        <a href="/" class="hover:text-white transition">~/home</a>
+        <a href="/about" class="hover:text-white transition">~/about</a>
+        <a href="/courses" class="hover:text-white transition">~/courses</a>
+        <a href="/practice" class="hover:text-white transition">~/practice</a>
+        <a href="/services" class="hover:text-white transition">~/services</a>
+        <a href="/contact" class="hover:text-white transition">~/contact</a>
       </nav>
-    </header>
-  </body>
-</html>
+
+      <div class="flex items-center gap-2 border-l border-zinc-800 pl-5">
+        <% if (locals.user) { %>
+          <span class="text-zinc-500">@<span class="text-zinc-300"><%= user.username %></span></span>
+          <a href="/logout" class="px-3 py-1 rounded border border-zinc-700 text-zinc-400 hover:border-zinc-500 hover:text-white transition">logout</a>
+        <% } else { %>
+          <a href="/login" class="px-3 py-1 rounded border border-zinc-700 text-zinc-400 hover:border-zinc-500 hover:text-white transition">login</a>
+          <a href="/register" class="px-3 py-1 rounded bg-white text-zinc-950 hover:bg-zinc-200 transition font-semibold">signup</a>
+        <% } %>
+      </div>
+    </div>
+
+  </div>
+</header>

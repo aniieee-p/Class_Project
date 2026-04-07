@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title><%= title %></title>
+</head>
+
+<body>
+
+<%- include("header") %>
+
+<h2>Available Courses</h2>
+
+<form id="courseForm" action="/courses/add" method="POST">
+
+<input type="text" name="course" id="course" placeholder="Enter course" required>
+
+<button type="submit">Add</button>
+
+</form>
+
+<br>
+
+<ul>
+
+<% courses.forEach(function(c){ %>
+
+<li>
+
+<b>ID:</b> <%= c.id %>  
+<b>Course:</b> <%= c.course %>
+
+<a href="#" onclick="editCourse('<%= c.id %>','<%= c.course %>')">Edit</a>
+
+<a href="/courses/delete/<%= c.id %>">Delete</a>
+
+</li>
+
+<% }) %>
+
+</ul>
+
+<script>
+
+function editCourse(id, course){
+
+document.getElementById("course").value = course;
+
+const form = document.getElementById("courseForm");
+form.action = "/courses/update/" + id;
+
+}
+
+</script>
+
+</body>
+</html>

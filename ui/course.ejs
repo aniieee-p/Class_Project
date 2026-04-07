@@ -1,56 +1,75 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title><%= title %></title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %></title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    body { background: #09090b; font-family: 'Inter', sans-serif; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .course-row { transition: border-color 0.15s; }
+    .course-row:hover { border-color: #3f3f46; }
+  </style>
 </head>
+<body class="text-zinc-100 min-h-screen">
+  <%- include("header") %>
 
-<body>
+  <section class="max-w-4xl mx-auto px-6 md:px-16 py-20">
 
-<%- include("header") %>
+    <div class="mb-10">
+      <p class="mono text-xs text-zinc-500 mb-2">// courses.manage</p>
+      <h1 class="mono text-4xl font-bold text-white">Courses</h1>
+    </div>
 
-<h2>Available Courses</h2>
+    <!-- Form -->
+    <form id="courseForm" action="/courses/add" method="POST" class="flex gap-2 mb-12">
+      <input type="text" name="course" id="courseInput" placeholder="course_name..." required
+        class="flex-1 mono text-sm px-4 py-2.5 rounded-lg bg-zinc-900 border border-zinc-800 text-white placeholder-zinc-600 focus:outline-none focus:border-zinc-600 transition" />
+      <button type="submit" id="submitBtn"
+        class="mono text-sm px-5 py-2.5 rounded-lg bg-white text-zinc-950 hover:bg-zinc-200 transition font-semibold shrink-0">
+        add()
+      </button>
+    </form>
 
-<form id="courseForm" action="/courses/add" method="POST">
+    <!-- List -->
+    <% if (courses.length === 0) { %>
+      <div class="text-center py-20">
+        <p class="mono text-zinc-600 text-sm">// no courses found</p>
+        <p class="mono text-zinc-700 text-xs mt-2">add your first course above</p>
+      </div>
+    <% } else { %>
+    <div class="flex flex-col gap-2">
+      <% courses.forEach(function(c, i){ %>
+      <div class="course-row flex items-center justify-between bg-zinc-900 border border-zinc-800 rounded-lg px-5 py-4">
+        <div class="flex items-center gap-4">
+          <span class="mono text-xs text-zinc-700"><%= String(i+1).padStart(2,'0') %></span>
+          <span class="text-white text-sm font-medium"><%= c.course %></span>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="editCourse('<%= c._id || c.id %>','<%= c.course %>')"
+            class="mono text-xs px-3 py-1.5 rounded border border-zinc-700 text-zinc-400 hover:border-zinc-500 hover:text-white transition">
+            edit
+          </button>
+          <a href="/courses/delete/<%= c._id || c.id %>"
+            class="mono text-xs px-3 py-1.5 rounded border border-zinc-800 text-zinc-600 hover:border-red-500/40 hover:text-red-400 transition">
+            delete
+          </a>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+    <% } %>
+  </section>
 
-<input type="text" name="course" id="course" placeholder="Enter course" required>
-
-<button type="submit">Add</button>
-
-</form>
-
-<br>
-
-<ul>
-
-<% courses.forEach(function(c){ %>
-
-<li>
-
-<b>ID:</b> <%= c.id %>  
-<b>Course:</b> <%= c.course %>
-
-<a href="#" onclick="editCourse('<%= c.id %>','<%= c.course %>')">Edit</a>
-
-<a href="/courses/delete/<%= c.id %>">Delete</a>
-
-</li>
-
-<% }) %>
-
-</ul>
-
-<script>
-
-function editCourse(id, course){
-
-document.getElementById("course").value = course;
-
-const form = document.getElementById("courseForm");
-form.action = "/courses/update/" + id;
-
-}
-
-</script>
-
+  <script>
+    function editCourse(id, course) {
+      document.getElementById("courseInput").value = course;
+      document.getElementById("submitBtn").textContent = "update()";
+      document.getElementById("courseForm").action = "/courses/update/" + id;
+      document.getElementById("courseInput").focus();
+    }
+  </script>
 </body>
 </html>

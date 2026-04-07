@@ -1,11 +1,89 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-  </head>
-  <body>
-    <%- include("header") %>
-    <li>Web Development</li>
-    <li>Android & IOS Development</li>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %></title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    body { background: #09090b; font-family: 'Inter', sans-serif; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .grid-bg {
+      background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .service-card { transition: border-color 0.2s, box-shadow 0.2s; }
+    .service-card:hover { border-color: #6366f1; box-shadow: 0 0 20px rgba(99,102,241,0.1); }
+  </style>
+</head>
+<body class="text-zinc-100 min-h-screen">
+  <%- include("header") %>
+
+  <section class="grid-bg py-24 px-6 md:px-16 border-b border-zinc-800">
+    <div class="max-w-7xl mx-auto">
+      <p class="mono text-xs text-zinc-500 mb-4">// services.list</p>
+      <h1 class="mono text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">What we<br/>teach.</h1>
+      <p class="text-zinc-400 text-lg max-w-xl">Hands-on tracks built around real engineering skills. Pick a path and start building.</p>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-6 md:px-16 py-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+
+    <div class="service-card bg-zinc-900 border border-zinc-800 rounded-xl p-7 flex flex-col gap-4">
+      <p class="mono text-xs text-zinc-500">01</p>
+      <h3 class="mono text-xl font-bold text-white">Web Development</h3>
+      <p class="text-zinc-400 text-sm leading-relaxed flex-1">Full-stack from HTML/CSS to Node.js, Express, and MongoDB. Build and deploy real apps.</p>
+      <a href="#" class="mono text-xs text-zinc-500 hover:text-white transition">explore →</a>
+    </div>
+
+    <div class="service-card bg-zinc-900 border border-zinc-800 rounded-xl p-7 flex flex-col gap-4">
+      <p class="mono text-xs text-zinc-500">02</p>
+      <h3 class="mono text-xl font-bold text-white">Android & iOS</h3>
+      <p class="text-zinc-400 text-sm leading-relaxed flex-1">Cross-platform mobile apps with React Native. One codebase, two platforms.</p>
+      <a href="#" class="mono text-xs text-zinc-500 hover:text-white transition">explore →</a>
+    </div>
+
+    <div class="service-card bg-zinc-900 border border-zinc-800 rounded-xl p-7 flex flex-col gap-4">
+      <p class="mono text-xs text-zinc-500">03</p>
+      <h3 class="mono text-xl font-bold text-white">DSA & Interviews</h3>
+      <p class="text-zinc-400 text-sm leading-relaxed flex-1">200+ problems covering arrays, trees, graphs, DP. Crack FAANG-level interviews.</p>
+      <a href="#" class="mono text-xs text-zinc-500 hover:text-white transition">explore →</a>
+    </div>
+
+    <div class="service-card bg-zinc-900 border border-zinc-800 rounded-xl p-7 flex flex-col gap-4">
+      <p class="mono text-xs text-zinc-500">04</p>
+      <h3 class="mono text-xl font-bold text-white">Cloud & DevOps</h3>
+      <p class="text-zinc-400 text-sm leading-relaxed flex-1">Docker, CI/CD, cloud deployment. The tools real engineering teams use daily.</p>
+      <a href="#" class="mono text-xs text-zinc-500 hover:text-white transition">explore →</a>
+    </div>
+
+    <div class="service-card bg-zinc-900 border border-zinc-800 rounded-xl p-7 flex flex-col gap-4">
+      <p class="mono text-xs text-zinc-500">05</p>
+      <h3 class="mono text-xl font-bold text-white">UI/UX & Design</h3>
+      <p class="text-zinc-400 text-sm leading-relaxed flex-1">Figma, Tailwind, design systems. Build interfaces that feel as good as they look.</p>
+      <a href="#" class="mono text-xs text-zinc-500 hover:text-white transition">explore →</a>
+    </div>
+
+    <div class="service-card bg-zinc-900 border border-zinc-800 rounded-xl p-7 flex flex-col gap-4">
+      <p class="mono text-xs text-zinc-500">06</p>
+      <h3 class="mono text-xl font-bold text-white">AI & ML</h3>
+      <p class="text-zinc-400 text-sm leading-relaxed flex-1">Python, ML fundamentals, and building AI-powered apps. No prior experience needed.</p>
+      <a href="#" class="mono text-xs text-zinc-500 hover:text-white transition">explore →</a>
+    </div>
+
+  </section>
+
+  <!-- CTA -->
+  <section class="max-w-7xl mx-auto px-6 md:px-16 pb-24">
+    <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-10 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div>
+        <p class="mono text-xs text-zinc-500 mb-2">// ready to start?</p>
+        <h2 class="mono text-2xl font-bold text-white">Pick a track. Start building.</h2>
+      </div>
+      <a href="/register" class="mono text-sm px-6 py-2.5 rounded-md bg-white text-zinc-950 hover:bg-zinc-200 transition font-semibold shrink-0">get_started()</a>
+    </div>
+  </section>
+
+</body>
 </html>

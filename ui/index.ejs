@@ -1,145 +1,209 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <style>
-      body {
-        font-family: Arial, Helvetica, sans-serif;
-        margin: 0;
-        background: #f4f6f9;
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %></title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            mono: ['JetBrains Mono', 'monospace'],
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            zinc: {
+              950: '#09090b',
+              900: '#18181b',
+              800: '#27272a',
+              700: '#3f3f46',
+              400: '#a1a1aa',
+              300: '#d4d4d8',
+              100: '#f4f4f5',
+            }
+          }
+        }
       }
+    }
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+    body { background: #09090b; font-family: 'Inter', sans-serif; }
 
-      .nav {
-        text-align: center;
-        padding: 60px 20px;
-        background: linear-gradient(135deg, #2f80ed, #56ccf2);
-        color: white;
-      }
+    /* Grid background */
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
 
-      .nav h1 {
-        font-size: 40px;
-        margin-bottom: 10px;
-      }
+    /* Spotlight */
+    .spotlight {
+      background: radial-gradient(ellipse 80% 50% at 20% 40%, rgba(99,102,241,0.12) 0%, transparent 70%);
+    }
 
-      .nav p {
-        font-size: 18px;
-        margin-bottom: 25px;
-      }
+    /* Cursor blink */
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+    .cursor::after {
+      content: '_';
+      animation: blink 1s step-end infinite;
+      color: #6366f1;
+    }
 
-      .search-box {
-        width: 50%;
-        padding: 12px;
-        border: none;
-        border-radius: 5px;
-        font-size: 16px;
-      }
+    /* Card hover glow */
+    .bento-card { transition: border-color 0.2s, box-shadow 0.2s; }
+    .bento-card:hover { border-color: #6366f1; box-shadow: 0 0 20px rgba(99,102,241,0.15); }
 
-      .container {
-        width: 85%;
-        margin: auto;
-        margin-top: 40px;
-      }
+    /* Command palette */
+    .cmd-bar { background: rgba(39,39,42,0.8); backdrop-filter: blur(12px); }
 
-      .section-title {
-        font-size: 28px;
-        margin-bottom: 20px;
-      }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+    .fade-up { animation: fadeUp 0.6s ease forwards; }
+  </style>
+</head>
+<body class="text-zinc-100 min-h-screen dark">
 
-      .courses {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 25px;
-      }
+  <%- include("header") %>
 
-      .card {
-        background: white;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        transition: 0.3s;
-      }
+  <!-- Hero -->
+  <section class="grid-bg spotlight relative min-h-[90vh] flex items-center px-6 md:px-16 overflow-hidden">
+    <div class="max-w-7xl w-full mx-auto fade-up">
 
-      .card:hover {
-        transform: translateY(-5px);
-      }
+      <div class="font-mono text-xs text-zinc-500 mb-6 flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-green-500 inline-block"></span>
+        codelearn.dev ~ learning environment ready
+      </div>
 
-      .card h3 {
-        margin-top: 0;
-      }
+      <h1 class="font-mono text-5xl md:text-7xl font-bold leading-tight text-white mb-6 max-w-4xl cursor">
+        Learn to build.<br/>Ship real things
+      </h1>
 
-      .card p {
-        color: #555;
-      }
+      <p class="text-zinc-400 text-lg max-w-xl mb-10 leading-relaxed">
+        A developer-first learning platform. No fluff — just structured paths, real code, and hands-on practice.
+      </p>
 
-      .btn {
-        display: inline-block;
-        margin-top: 10px;
-        padding: 8px 14px;
-        background: #2f80ed;
-        color: white;
-        text-decoration: none;
-        border-radius: 4px;
-      }
+      <div class="flex flex-wrap items-center gap-4 mb-16">
+        <a href="/register" class="font-mono text-sm px-5 py-2.5 rounded-md bg-white text-zinc-950 hover:bg-zinc-200 transition font-semibold">
+          get_started()
+        </a>
+        <a href="/courses" class="font-mono text-sm px-5 py-2.5 rounded-md border border-zinc-700 text-zinc-300 hover:border-zinc-500 transition">
+          browse_courses →
+        </a>
+      </div>
 
-      .btn:hover {
-        background: #1366d6;
-      }
-    </style>
-  </head>
+      <div class="flex items-center gap-6 text-zinc-600 font-mono text-xs">
+        <span>// 10,000+ students</span>
+        <span>// 50+ courses</span>
+        <span>// free to start</span>
+      </div>
+    </div>
+  </section>
 
-  <body>
-    <%- include("header") %>
+  <!-- Bento Grid -->
+  <section class="max-w-7xl mx-auto px-6 md:px-16 py-24">
 
-    <section class="nav">
-      <h1>Learn Coding the Smart Way</h1>
-      <p>Practice problems, learn concepts and build skills</p>
-      <input
-        class="search-box"
-        type="text"
-        placeholder="Search courses, topics..."
-      />
-    </section>
+    <div class="flex items-center justify-between mb-12">
+      <div>
+        <p class="font-mono text-xs text-zinc-500 mb-2">// popular_courses</p>
+        <h2 class="font-mono text-2xl font-bold text-white">Popular Courses</h2>
+      </div>
+      <a href="/courses" class="font-mono text-xs text-zinc-500 hover:text-white transition">view all →</a>
+    </div>
 
-    <div class="container">
-      <h2 class="section-title">Popular Courses</h2>
+    <!-- Bento layout -->
+    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3 auto-rows-[180px]">
 
-      <div class="courses">
-        <div class="card">
-          <h3>Data Structures</h3>
-          <p>Learn arrays, stacks, queues and trees.</p>
-          <a href="#" class="btn">Start Learning</a>
+      <!-- Large card -->
+      <div class="bento-card md:col-span-2 md:row-span-2 bg-zinc-900 border border-zinc-800 rounded-xl p-7 flex flex-col justify-between cursor-pointer group">
+        <div>
+          <div class="font-mono text-xs text-zinc-500 mb-3">01 / beginner</div>
+          <h3 class="font-mono text-2xl font-bold text-white mb-3">Data Structures</h3>
+          <p class="text-zinc-400 text-sm leading-relaxed">Arrays, stacks, queues, trees and graphs. The foundation of every technical interview.</p>
         </div>
-
-        <div class="card">
-          <h3>Algorithms</h3>
-          <p>Master sorting, searching and optimization.</p>
-          <a href="#" class="btn">Start Learning</a>
+        <div class="flex items-center justify-between">
+          <span class="font-mono text-xs text-zinc-600">12 modules · 4h</span>
+          <span class="font-mono text-xs text-zinc-400 group-hover:text-white group-hover:translate-x-1 transition-all">→</span>
         </div>
+      </div>
 
-        <div class="card">
-          <h3>JavaScript</h3>
-          <p>Become a frontend developer with JS.</p>
-          <a href="#" class="btn">Start Learning</a>
+      <!-- Small card -->
+      <div class="bento-card bg-zinc-900 border border-zinc-800 rounded-xl p-6 flex flex-col justify-between cursor-pointer group">
+        <div>
+          <div class="font-mono text-xs text-zinc-500 mb-2">02 / intermediate</div>
+          <h3 class="font-mono text-lg font-bold text-white">Algorithms</h3>
         </div>
+        <span class="font-mono text-xs text-zinc-400 group-hover:text-white transition">→</span>
+      </div>
 
-        <div class="card">
-          <h3>Node.js</h3>
-          <p>Build backend applications using Node.js.</p>
-          <a href="#" class="btn">Start Learning</a>
+      <!-- Small card -->
+      <div class="bento-card bg-zinc-900 border border-zinc-800 rounded-xl p-6 flex flex-col justify-between cursor-pointer group">
+        <div>
+          <div class="font-mono text-xs text-zinc-500 mb-2">03 / beginner</div>
+          <h3 class="font-mono text-lg font-bold text-white">JavaScript</h3>
         </div>
+        <span class="font-mono text-xs text-zinc-400 group-hover:text-white transition">→</span>
+      </div>
 
-        <div class="card">
-          <h3>MongoDB</h3>
-          <p>Learn NoSQL database and CRUD operations.</p>
-          <a href="#" class="btn">Start Learning</a>
+      <!-- Wide card -->
+      <div class="bento-card md:col-span-2 bg-zinc-900 border border-zinc-800 rounded-xl p-6 flex flex-col justify-between cursor-pointer group">
+        <div>
+          <div class="font-mono text-xs text-zinc-500 mb-2">04 / intermediate</div>
+          <h3 class="font-mono text-xl font-bold text-white mb-2">Node.js</h3>
+          <p class="text-zinc-400 text-sm">Build backend APIs, handle auth, connect databases.</p>
         </div>
+        <span class="font-mono text-xs text-zinc-400 group-hover:text-white transition">→</span>
+      </div>
 
-        <div class="card">
-          <h3>System Design</h3>
-          <p>Learn how scalable systems are built.</p>
-          <a href="#" class="btn">Start Learning</a>
+      <!-- Small card -->
+      <div class="bento-card bg-zinc-900 border border-zinc-800 rounded-xl p-6 flex flex-col justify-between cursor-pointer group" style="background: linear-gradient(135deg, #18181b, #1e1b4b);">
+        <div>
+          <div class="font-mono text-xs text-indigo-400 mb-2">05 / intermediate</div>
+          <h3 class="font-mono text-lg font-bold text-white">MongoDB</h3>
+        </div>
+        <span class="font-mono text-xs text-indigo-400 group-hover:text-white transition">→</span>
+      </div>
+
+      <!-- Small card -->
+      <div class="bento-card bg-zinc-900 border border-zinc-800 rounded-xl p-6 flex flex-col justify-between cursor-pointer group" style="background: linear-gradient(135deg, #18181b, #1a0a2e);">
+        <div>
+          <div class="font-mono text-xs text-purple-400 mb-2">06 / advanced</div>
+          <h3 class="font-mono text-lg font-bold text-white">System Design</h3>
+        </div>
+        <span class="font-mono text-xs text-purple-400 group-hover:text-white transition">→</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Terminal-style stats -->
+  <section class="max-w-7xl mx-auto px-6 md:px-16 pb-24">
+    <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-8 font-mono text-sm">
+      <div class="text-zinc-500 mb-4 text-xs">~ codelearn --stats</div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div>
+          <div class="text-3xl font-bold text-white">10k+</div>
+          <div class="text-zinc-500 text-xs mt-1">active_students</div>
+        </div>
+        <div>
+          <div class="text-3xl font-bold text-white">50+</div>
+          <div class="text-zinc-500 text-xs mt-1">total_courses</div>
+        </div>
+        <div>
+          <div class="text-3xl font-bold text-white">200+</div>
+          <div class="text-zinc-500 text-xs mt-1">practice_problems</div>
+        </div>
+        <div>
+          <div class="text-3xl font-bold text-white">98%</div>
+          <div class="text-zinc-500 text-xs mt-1">satisfaction_rate</div>
         </div>
       </div>
     </div>
-  </body>
+  </section>
+
+</body>
 </html>

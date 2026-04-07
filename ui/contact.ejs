@@ -1,22 +1,82 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-  </head>
-  <body>
-    <%- include("header") %>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %></title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    body { background: #09090b; font-family: 'Inter', sans-serif; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+  </style>
+</head>
+<body class="text-zinc-100 min-h-screen">
+  <%- include("header") %>
 
-    <form>
-      <label>Name:</label><br />
-      <input type="text" name="username" /><br /><br />
+  <section class="max-w-7xl mx-auto px-6 md:px-16 py-24 grid md:grid-cols-2 gap-16 items-start">
 
-      <label>Email:</label><br />
-      <input type="email" email="email" /><br /><br />
+    <!-- Left -->
+    <div>
+      <p class="mono text-xs text-zinc-500 mb-4">// contact.md</p>
+      <h1 class="mono text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">Say hello.</h1>
+      <p class="text-zinc-400 leading-relaxed mb-12 max-w-sm">Have a question or feedback? We read every message and reply within 24 hours.</p>
 
-      <label>Message:</label><br />
-      <input type="text" name="message" /><br /><br />
+      <div class="flex flex-col gap-5">
+        <div class="flex items-center gap-4">
+          <span class="mono text-xs text-zinc-600 w-20">email</span>
+          <span class="text-zinc-300 text-sm">support@codelearn.dev</span>
+        </div>
+        <div class="w-full h-px bg-zinc-800"></div>
+        <div class="flex items-center gap-4">
+          <span class="mono text-xs text-zinc-600 w-20">twitter</span>
+          <span class="text-zinc-300 text-sm">@codelearn</span>
+        </div>
+        <div class="w-full h-px bg-zinc-800"></div>
+        <div class="flex items-center gap-4">
+          <span class="mono text-xs text-zinc-600 w-20">discord</span>
+          <span class="text-zinc-300 text-sm">discord.gg/codelearn</span>
+        </div>
+        <div class="w-full h-px bg-zinc-800"></div>
+        <div class="flex items-center gap-4">
+          <span class="mono text-xs text-zinc-600 w-20">github</span>
+          <span class="text-zinc-300 text-sm">github.com/codelearn</span>
+        </div>
+      </div>
+    </div>
 
-      <button type="submit">Submit</button>
-    </form>
-  </body>
+    <!-- Form -->
+    <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-8">
+      <p class="mono text-xs text-zinc-500 mb-6">// send_message()</p>
+      <form class="flex flex-col gap-5">
+        <div>
+          <label class="mono text-xs text-zinc-500 block mb-2">name</label>
+          <input type="text" name="username" placeholder="your name" required
+            class="w-full px-4 py-3 rounded-lg bg-zinc-950 border border-zinc-800 text-white placeholder-zinc-600 focus:outline-none focus:border-zinc-600 transition mono text-sm" />
+        </div>
+        <div>
+          <label class="mono text-xs text-zinc-500 block mb-2">email</label>
+          <input type="email" name="email" placeholder="you@example.com" required
+            class="w-full px-4 py-3 rounded-lg bg-zinc-950 border border-zinc-800 text-white placeholder-zinc-600 focus:outline-none focus:border-zinc-600 transition mono text-sm" />
+        </div>
+        <div>
+          <label class="mono text-xs text-zinc-500 block mb-2">subject</label>
+          <input type="text" name="subject" placeholder="what's this about?"
+            class="w-full px-4 py-3 rounded-lg bg-zinc-950 border border-zinc-800 text-white placeholder-zinc-600 focus:outline-none focus:border-zinc-600 transition mono text-sm" />
+        </div>
+        <div>
+          <label class="mono text-xs text-zinc-500 block mb-2">message</label>
+          <textarea name="message" rows="5" placeholder="write your message..." required
+            class="w-full px-4 py-3 rounded-lg bg-zinc-950 border border-zinc-800 text-white placeholder-zinc-600 focus:outline-none focus:border-zinc-600 transition mono text-sm resize-none"></textarea>
+        </div>
+        <button type="submit"
+          class="mono text-sm px-5 py-2.5 rounded-lg bg-white text-zinc-950 hover:bg-zinc-200 transition font-semibold">
+          send_message()
+        </button>
+      </form>
+    </div>
+
+  </section>
+
+</body>
 </html>

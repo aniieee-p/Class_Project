@@ -1,11 +1,75 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title><%= title %></title>
-    </head>
-    <body>
-        <%- include("header") %>
-        <h3>About US</h3>
-        <p>Provide hands on project guidance with live server</p>
-    </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %></title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    body { background: #09090b; font-family: 'Inter', sans-serif; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .grid-bg {
+      background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+  </style>
+</head>
+<body class="text-zinc-100 min-h-screen">
+  <%- include("header") %>
+
+  <section class="grid-bg py-24 px-6 md:px-16 border-b border-zinc-800">
+    <div class="max-w-7xl mx-auto">
+      <p class="mono text-xs text-zinc-500 mb-4">// about.md</p>
+      <h1 class="mono text-5xl md:text-6xl font-bold text-white mb-6 max-w-3xl leading-tight">Built by devs,<br/>for devs.</h1>
+      <p class="text-zinc-400 text-lg max-w-xl leading-relaxed">CodeLearn is a developer-first platform focused on practical, hands-on learning. No theory overload — just real skills.</p>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="max-w-7xl mx-auto px-6 md:px-16 py-16 border-b border-zinc-800">
+    <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-8 mono text-sm">
+      <div class="text-zinc-500 mb-6 text-xs">~ codelearn --about --stats</div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div><div class="text-4xl font-bold text-white">10k+</div><div class="text-zinc-500 text-xs mt-1">students</div></div>
+        <div><div class="text-4xl font-bold text-white">50+</div><div class="text-zinc-500 text-xs mt-1">courses</div></div>
+        <div><div class="text-4xl font-bold text-white">200+</div><div class="text-zinc-500 text-xs mt-1">problems</div></div>
+        <div><div class="text-4xl font-bold text-white">98%</div><div class="text-zinc-500 text-xs mt-1">satisfaction</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission -->
+  <section class="max-w-7xl mx-auto px-6 md:px-16 py-20 grid md:grid-cols-2 gap-16 items-start">
+    <div>
+      <p class="mono text-xs text-zinc-500 mb-3">// mission_statement</p>
+      <h2 class="mono text-3xl font-bold text-white mb-5">Why CodeLearn?</h2>
+      <p class="text-zinc-400 leading-relaxed mb-4">We believe learning to code should feel like building, not studying. Every course is structured around real output — something you can show, deploy, or ship.</p>
+      <p class="text-zinc-400 leading-relaxed">From DSA to system design, we cover the full stack of what it takes to become a working engineer.</p>
+    </div>
+    <div class="grid grid-cols-2 gap-3">
+      <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5 hover:border-zinc-600 transition">
+        <p class="mono text-xs text-zinc-500 mb-3">01</p>
+        <h3 class="mono font-semibold text-white mb-1">Goal-Oriented</h3>
+        <p class="text-zinc-500 text-xs leading-relaxed">Every course ends with something you built.</p>
+      </div>
+      <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5 hover:border-zinc-600 transition">
+        <p class="mono text-xs text-zinc-500 mb-3">02</p>
+        <h3 class="mono font-semibold text-white mb-1">No Bloat</h3>
+        <p class="text-zinc-500 text-xs leading-relaxed">Concise, dense lessons. No 10-hour intros.</p>
+      </div>
+      <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5 hover:border-zinc-600 transition">
+        <p class="mono text-xs text-zinc-500 mb-3">03</p>
+        <h3 class="mono font-semibold text-white mb-1">Community</h3>
+        <p class="text-zinc-500 text-xs leading-relaxed">Learn alongside 10k+ other engineers.</p>
+      </div>
+      <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5 hover:border-zinc-600 transition">
+        <p class="mono text-xs text-zinc-500 mb-3">04</p>
+        <h3 class="mono font-semibold text-white mb-1">Free Core</h3>
+        <p class="text-zinc-500 text-xs leading-relaxed">Core content is always free. No paywalls.</p>
+      </div>
+    </div>
+  </section>
+
+</body>
 </html>
