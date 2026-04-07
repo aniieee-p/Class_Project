@@ -71,11 +71,14 @@
     code.addEventListener("keyup", () => { preview.srcdoc = code.value; });
     function clearEditor() { code.value = ""; preview.srcdoc = ""; }
     const snippets = {
-      html: `<!DOCTYPE html>\n<html lang="en">\n<head>\n  <meta charset="UTF-8">\n  <title>Page</title>\n</head>\n<body>\n  <h1>Hello World</h1>\n</body>\n</html>`,
+      html: `<!DOCTYPE html>\n<html lang="en">\n<head>\n  <meta charset="UTF-8">\n  <title>Page</title>\n</head>\n<body>\n  <h1>Hello World</h1>\n  <%- include("footer") %>
+</body>\n</html>`,
       flex: `<style>\n  body { margin: 0; }\n  .container { display: flex; justify-content: center; align-items: center; gap: 16px; height: 100vh; background: #09090b; }\n  .box { width: 80px; height: 80px; background: #6366f1; border-radius: 8px; }\n</style>\n<div class="container">\n  <div class="box"></div>\n  <div class="box"></div>\n  <div class="box"></div>\n</div>`,
       btn: `<style>\n  body { display:flex; justify-content:center; align-items:center; height:100vh; background:#09090b; }\n  button { padding: 10px 24px; background: white; color: #09090b; border: none; border-radius: 6px; font-family: monospace; font-size: 14px; cursor: pointer; }\n  button:hover { background: #d4d4d8; }\n</style>\n<button>get_started()</button>`
     };
     function loadSnippet(k) { code.value = snippets[k]; preview.srcdoc = snippets[k]; }
   </script>
+  <%- include("footer") %>
 </body>
 </html>
+
