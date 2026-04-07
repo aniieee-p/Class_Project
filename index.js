@@ -57,5 +57,10 @@ app.get("/profile", requireLogin, (req, res) => res.render("profile", { title: "
 app.use("/courses", requireLogin, courseRoute);
 app.use("/", userRoute);
 
+// 404 handler
+app.use((req, res) => {
+  res.status(404).render("404");
+});
+
 // Server
 app.listen(port, () => console.log(`Server is up at ${port}`));

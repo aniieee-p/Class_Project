@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — Not Found</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    body { background: #09090b; font-family: 'JetBrains Mono', monospace; }
+    .dot-grid {
+      background-image: radial-gradient(circle, #27272a 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+    .cursor::after { content:'_'; animation: blink 1s step-end infinite; color: #a78bfa; }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+    .fade-up { animation: fadeUp 0.5s ease forwards; }
+    @keyframes scan {
+      0% { top: -10%; opacity: 0.5; }
+      100% { top: 110%; opacity: 0; }
+    }
+    .scan-line {
+      position: fixed; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(167,139,250,0.4), transparent);
+      animation: scan 5s linear infinite;
+      pointer-events: none; z-index: 0;
+    }
+    .err-card { transition: transform 0.2s ease, border-color 0.2s, box-shadow 0.2s; }
+    .err-card:hover { transform: translateY(-3px); border-color: #a78bfa; box-shadow: 0 0 40px rgba(167,139,250,0.12); }
+  </style>
+</head>
+<body class="dot-grid min-h-screen flex items-center justify-center px-6 text-zinc-100">
+
+  <div class="scan-line"></div>
+
+  <div class="fade-up relative z-10 text-center max-w-lg">
+
+    <!-- Big 404 -->
+    <div class="mb-6">
+      <p class="text-xs text-zinc-600 mb-2">// error.status</p>
+      <h1 class="text-8xl md:text-9xl font-bold" style="background: linear-gradient(135deg,#a78bfa,#38bdf8); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">404</h1>
+    </div>
+
+    <!-- Card -->
+    <div class="err-card bg-zinc-900/60 border border-zinc-800 rounded-md p-8 backdrop-blur-sm mb-8"
+         style="background: linear-gradient(145deg, #18181b, #1e1427);">
+      <p class="text-xs text-zinc-600 mb-4">~ codelearn: command not found</p>
+      <h2 class="text-xl font-bold text-white mb-3 cursor">page_not_found</h2>
+      <p class="text-zinc-400 text-sm leading-relaxed">The path you're looking for doesn't exist or has been moved. Check the URL or head back home.</p>
+    </div>
+
+    <!-- Actions -->
+    <div class="flex items-center justify-center gap-3">
+      <a href="/" class="mono text-sm px-5 py-2.5 rounded-sm bg-white text-zinc-950 hover:bg-zinc-200 transition font-semibold">
+        ~/home
+      </a>
+      <a href="javascript:history.back()" class="mono text-sm px-5 py-2.5 rounded-sm border border-zinc-700 text-zinc-400 hover:border-zinc-500 hover:text-white transition">
+        ← go_back()
+      </a>
+    </div>
+
+    <p class="mono text-xs text-zinc-700 mt-8">codelearn.dev ~ v1.0.0</p>
+  </div>
+
+</body>
+</html>

@@ -112,8 +112,12 @@
           <label class="mono text-xs text-zinc-500 block mb-2">* message</label>
           <textarea name="message" rows="5" placeholder="write your message..." required class="code-input w-full px-4 py-3 rounded-sm resize-none"></textarea>
         </div>
-        <button type="submit" class="mono text-sm px-5 py-2.5 rounded-sm bg-gradient-to-r from-violet-500 to-sky-500 text-white hover:from-violet-400 hover:to-sky-400 transition font-semibold">
-          send_message()
+        <button type="submit" id="contactBtn" class="mono text-sm px-5 py-2.5 rounded-sm bg-gradient-to-r from-violet-500 to-sky-500 text-white hover:from-violet-400 hover:to-sky-400 transition font-semibold flex items-center justify-center gap-2">
+          <svg id="contactSpinner" class="hidden w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/>
+          </svg>
+          <span id="contactBtnText">send_message()</span>
         </button>
       </form>
     </div>
@@ -121,5 +125,12 @@
   </section>
 
   <%- include("footer") %>
-</body>
+
+  <script>
+    document.querySelector('form').addEventListener('submit', function() {
+      document.getElementById('contactSpinner').classList.remove('hidden');
+      document.getElementById('contactBtnText').textContent = 'sending...';
+      document.getElementById('contactBtn').disabled = true;
+    });
+  </script></body>
 </html>

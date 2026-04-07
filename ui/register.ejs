@@ -111,9 +111,13 @@
           </label>
         </div>
 
-        <button type="submit"
-          class="mt-2 w-full py-2.5 rounded-sm bg-white text-zinc-950 text-sm font-bold hover:bg-zinc-200 transition tracking-tight">
-          create_account()
+        <button type="submit" id="regBtn"
+          class="mt-2 w-full py-2.5 rounded-sm bg-white text-zinc-950 text-sm font-bold hover:bg-zinc-200 transition tracking-tight flex items-center justify-center gap-2">
+          <svg id="regSpinner" class="hidden w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/>
+          </svg>
+          <span id="regBtnText">create_account()</span>
         </button>
 
       </form>
@@ -148,6 +152,11 @@
       p.type = p.type === 'password' ? 'text' : 'password';
       btn.textContent = p.type === 'password' ? 'show' : 'hide';
     }
+    document.querySelector('form').addEventListener('submit', function() {
+      document.getElementById('regSpinner').classList.remove('hidden');
+      document.getElementById('regBtnText').textContent = 'creating...';
+      document.getElementById('regBtn').disabled = true;
+    });
   </script>
 </body>
 </html>
