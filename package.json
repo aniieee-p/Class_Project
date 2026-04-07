@@ -12,8 +12,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "bcryptjs": "^3.0.3",
     "ejs": "^4.0.1",
     "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "mongoose": "^9.3.3",
     "nodemon": "^3.1.11",
     "uuid": "^13.0.0"
   }
