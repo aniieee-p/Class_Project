@@ -1,47 +1,135 @@
 <style>
-  .cmd-bar { background: rgba(39,39,42,0.6); backdrop-filter: blur(8px); }
-  .cmd-input { background: rgba(9,9,11,0.8); }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  .nav-link { position: relative; transition: color 0.15s; }
+  .nav-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:1px; transition:width 0.2s ease; }
+  .nav-link:hover { color: #e4e4e7; }
+  .nav-link:hover::after { width: 100%; }
+  a[href="/"]::after         { background: #a78bfa; }
+  a[href="/about"]::after    { background: #34d399; }
+  a[href="/courses"]::after  { background: #f59e0b; }
+  a[href="/practice"]::after { background: #f472b6; }
+  a[href="/services"]::after { background: #38bdf8; }
+  a[href="/contact"]::after  { background: #fb923c; }
+  a[href="/"].active-link         { color: #a78bfa !important; }
+  a[href="/about"].active-link    { color: #34d399 !important; }
+  a[href="/courses"].active-link  { color: #f59e0b !important; }
+  a[href="/practice"].active-link { color: #f472b6 !important; }
+  a[href="/services"].active-link { color: #38bdf8 !important; }
+  a[href="/contact"].active-link  { color: #fb923c !important; }
+  .active-link::after { width: 100% !important; }
+  .cmd-bar { background: rgba(9,9,11,0.88); backdrop-filter: blur(14px); }
+  #mobile-menu { display: none; }
+  #mobile-menu.open { display: flex; }
+  #user-dropdown { display: none; }
+  #user-dropdown.open { display: block; }
+  @keyframes slideDown { from{opacity:0;transform:translateY(-6px)} to{opacity:1;transform:translateY(0)} }
+  .slide-down { animation: slideDown 0.2s ease forwards; }
+  .logo-text { background: linear-gradient(90deg,#a78bfa,#38bdf8,#34d399); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
 </style>
 
-<header class="sticky top-0 z-50 border-b border-zinc-800 cmd-bar">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<header class="sticky top-0 z-50 border-b border-zinc-800/60 cmd-bar">
   <div class="max-w-7xl mx-auto px-6 h-12 flex items-center justify-between gap-6">
 
-    <!-- Logo -->
-    <a href="/" class="font-mono text-sm font-bold text-white shrink-0">
-      code<span class="text-indigo-400">learn</span><span class="text-zinc-600">.dev</span>
+    <a href="/" class="mono text-sm font-bold shrink-0 flex items-center gap-1">
+      <span class="logo-text">codelearn</span><span class="text-zinc-700">.dev</span>
     </a>
 
-    <!-- Command palette style search -->
-    <div class="flex-1 max-w-sm hidden md:flex items-center gap-2 cmd-input border border-zinc-800 rounded-md px-3 py-1.5 text-zinc-500 text-xs font-mono cursor-pointer hover:border-zinc-600 transition">
-      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-      <span>Search courses...</span>
-      <span class="ml-auto flex items-center gap-1 text-zinc-700">
+    <div class="flex-1 max-w-xs hidden md:flex items-center gap-2 bg-zinc-900/80 border border-zinc-800 rounded-sm px-3 py-1.5 text-zinc-600 text-xs mono cursor-pointer hover:border-zinc-600 transition group">
+      <svg class="w-3 h-3 group-hover:text-zinc-400 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+      <span class="group-hover:text-zinc-400 transition">search...</span>
+      <span class="ml-auto flex items-center gap-0.5 opacity-50">
         <kbd class="px-1 py-0.5 rounded bg-zinc-800 text-zinc-500 text-xs">⌘</kbd>
         <kbd class="px-1 py-0.5 rounded bg-zinc-800 text-zinc-500 text-xs">K</kbd>
       </span>
     </div>
 
-    <!-- Nav + Auth -->
-    <div class="flex items-center gap-5 text-xs font-mono text-zinc-500">
-      <nav class="hidden lg:flex items-center gap-5">
-        <a href="/" class="hover:text-white transition">~/home</a>
-        <a href="/about" class="hover:text-white transition">~/about</a>
-        <a href="/courses" class="hover:text-white transition">~/courses</a>
-        <a href="/practice" class="hover:text-white transition">~/practice</a>
-        <a href="/services" class="hover:text-white transition">~/services</a>
-        <a href="/contact" class="hover:text-white transition">~/contact</a>
-      </nav>
+    <nav class="hidden lg:flex items-center gap-6 mono text-xs text-zinc-500">
+      <a href="/" class="nav-link">~/home</a>
+      <a href="/about" class="nav-link">~/about</a>
+      <a href="/courses" class="nav-link">~/courses</a>
+      <a href="/practice" class="nav-link">~/practice</a>
+      <a href="/services" class="nav-link">~/services</a>
+      <a href="/contact" class="nav-link">~/contact</a>
+    </nav>
 
-      <div class="flex items-center gap-2 border-l border-zinc-800 pl-5">
-        <% if (locals.user) { %>
-          <span class="text-zinc-500">@<span class="text-zinc-300"><%= user.username %></span></span>
-          <a href="/logout" class="px-3 py-1 rounded border border-zinc-700 text-zinc-400 hover:border-zinc-500 hover:text-white transition">logout</a>
-        <% } else { %>
-          <a href="/login" class="px-3 py-1 rounded border border-zinc-700 text-zinc-400 hover:border-zinc-500 hover:text-white transition">login</a>
-          <a href="/register" class="px-3 py-1 rounded bg-white text-zinc-950 hover:bg-zinc-200 transition font-semibold">signup</a>
-        <% } %>
-      </div>
+    <div class="flex items-center gap-3 mono text-xs">
+      <% if (locals.user) { %>
+        <div class="relative">
+          <button onclick="toggleDropdown()" class="flex items-center gap-2 px-3 py-1.5 rounded-sm border border-zinc-800 text-zinc-400 hover:border-violet-500/50 hover:text-violet-300 transition">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 inline-block"></span>
+            @<%= user.username %>
+            <svg class="w-3 h-3 text-zinc-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="user-dropdown" class="slide-down absolute right-0 mt-1 w-44 bg-zinc-900 border border-zinc-800 rounded-sm overflow-hidden shadow-xl">
+            <a href="/courses" class="block px-4 py-2.5 text-amber-400/80 hover:bg-zinc-800 hover:text-amber-400 transition text-xs">my_courses</a>
+            <a href="/practice" class="block px-4 py-2.5 text-pink-400/80 hover:bg-zinc-800 hover:text-pink-400 transition text-xs">practice</a>
+            <div class="h-px bg-zinc-800 mx-3"></div>
+            <a href="/logout" class="block px-4 py-2.5 text-red-400/60 hover:bg-zinc-800 hover:text-red-400 transition text-xs">logout()</a>
+          </div>
+        </div>
+      <% } else { %>
+        <a href="/login" class="px-3 py-1.5 rounded-sm border border-zinc-800 text-zinc-500 hover:border-sky-500/50 hover:text-sky-400 transition">login</a>
+        <a href="/register" class="px-3 py-1.5 rounded-sm bg-gradient-to-r from-violet-500 to-sky-500 text-white hover:from-violet-400 hover:to-sky-400 transition font-semibold">signup</a>
+      <% } %>
+
+      <button onclick="toggleMobile()" class="lg:hidden p-1.5 text-zinc-500 hover:text-white transition">
+        <svg id="hamburger-icon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg id="close-icon" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
     </div>
+  </div>
 
+  <div id="mobile-menu" class="slide-down flex-col border-t border-zinc-800 bg-zinc-950 px-6 py-3 lg:hidden">
+    <a href="/" class="mono text-xs py-2.5 border-b border-zinc-900 flex items-center gap-2 group">
+      <span class="w-1.5 h-1.5 rounded-full bg-violet-400"></span>
+      <span class="text-zinc-500 group-hover:text-violet-400 transition">~/home</span>
+    </a>
+    <a href="/about" class="mono text-xs py-2.5 border-b border-zinc-900 flex items-center gap-2 group">
+      <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+      <span class="text-zinc-500 group-hover:text-emerald-400 transition">~/about</span>
+    </a>
+    <a href="/courses" class="mono text-xs py-2.5 border-b border-zinc-900 flex items-center gap-2 group">
+      <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+      <span class="text-zinc-500 group-hover:text-amber-400 transition">~/courses</span>
+    </a>
+    <a href="/practice" class="mono text-xs py-2.5 border-b border-zinc-900 flex items-center gap-2 group">
+      <span class="w-1.5 h-1.5 rounded-full bg-pink-400"></span>
+      <span class="text-zinc-500 group-hover:text-pink-400 transition">~/practice</span>
+    </a>
+    <a href="/services" class="mono text-xs py-2.5 border-b border-zinc-900 flex items-center gap-2 group">
+      <span class="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
+      <span class="text-zinc-500 group-hover:text-sky-400 transition">~/services</span>
+    </a>
+    <a href="/contact" class="mono text-xs py-2.5 flex items-center gap-2 group">
+      <span class="w-1.5 h-1.5 rounded-full bg-orange-400"></span>
+      <span class="text-zinc-500 group-hover:text-orange-400 transition">~/contact</span>
+    </a>
   </div>
 </header>
+
+<script>
+  function toggleMobile() {
+    const menu = document.getElementById('mobile-menu');
+    const h = document.getElementById('hamburger-icon');
+    const c = document.getElementById('close-icon');
+    menu.classList.toggle('open');
+    h.classList.toggle('hidden');
+    c.classList.toggle('hidden');
+  }
+  function toggleDropdown() {
+    document.getElementById('user-dropdown').classList.toggle('open');
+  }
+  document.addEventListener('click', function(e) {
+    const dd = document.getElementById('user-dropdown');
+    if (dd && !e.target.closest('[onclick="toggleDropdown()"]') && !e.target.closest('#user-dropdown')) {
+      dd.classList.remove('open');
+    }
+  });
+  document.querySelectorAll('.nav-link').forEach(link => {
+    if (link.getAttribute('href') === window.location.pathname) {
+      link.classList.add('active-link');
+    }
+  });
+</script>
