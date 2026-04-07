@@ -1,5 +1,10 @@
 <style>
   .mono { font-family: 'JetBrains Mono', monospace; }
+
+  /* Page transition */
+  @keyframes pageIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+  body { animation: pageIn 0.3s ease forwards; }
+
   .nav-link { position: relative; transition: color 0.15s; }
   .nav-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:1px; transition:width 0.2s ease; }
   .nav-link:hover { color: #e4e4e7; }
@@ -78,6 +83,10 @@
       <button onclick="toggleMobile()" class="lg:hidden p-1.5 text-zinc-500 hover:text-white transition">
         <svg id="hamburger-icon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
         <svg id="close-icon" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+      <!-- Mobile search button -->
+      <button onclick="openPalette()" class="lg:hidden p-1.5 text-zinc-500 hover:text-violet-400 transition" title="Search">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
       </button>
     </div>
   </div>
@@ -253,6 +262,19 @@
   document.querySelectorAll('.nav-link').forEach(link => {
     if (link.getAttribute('href') === window.location.pathname) {
       link.classList.add('active-link');
+    }
+  });
+
+  // Fade out on navigation
+  document.querySelectorAll('a[href]').forEach(link => {
+    const href = link.getAttribute('href');
+    if (!href.startsWith('#') && !href.startsWith('javascript') && link.target !== '_blank') {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.body.style.transition = 'opacity 0.2s ease';
+        document.body.style.opacity = '0';
+        setTimeout(() => { window.location.href = href; }, 200);
+      });
     }
   });
 </script>
