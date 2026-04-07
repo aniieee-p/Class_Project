@@ -10,15 +10,18 @@ router.post("/register", async (req, res) => {
 
     const existingUser = await User.findOne({ $or: [{ email }, { username }] });
     if (existingUser) {
-      return res.send("Username or email already exists. <a href='/register'>Try again</a>");
+      req.flash("error", "Username or email already exists");
+      return res.redirect("/register");
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
     await User.create({ username, email, password: hashedPassword });
+
+    req.flash("success", "Account created! Please sign in");
     res.redirect("/login");
   } catch (err) {
-    console.error("Register error:", err.message);
-    res.send("Registration failed: " + err.message);
+    req.flash("error", "Registration failed: " + err.message);
+    res.redirect("/register");
   }
 });
 
@@ -26,26 +29,25 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
-    console.log("Login attempt:", email);
-
     const user = await User.findOne({ email });
-    console.log("User found:", user);
 
     if (!user) {
-      return res.send("User not found");
+      req.flash("error", "No account found with that email");
+      return res.redirect("/login");
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
-
     if (!isMatch) {
-      return res.send("Invalid password");
+      req.flash("error", "Incorrect password");
+      return res.redirect("/login");
     }
 
-    req.session.user = { id: user._id, username: user.username };
+    req.session.user = { id: user._id, username: user.username, email: user.email };
+    req.flash("success", `Welcome back, ${user.username}`);
     res.redirect("/");
   } catch (err) {
-    console.error("Login error:", err.message);
-    res.send("Login failed: " + err.message);
+    req.flash("error", "Login failed: " + err.message);
+    res.redirect("/login");
   }
 });
 

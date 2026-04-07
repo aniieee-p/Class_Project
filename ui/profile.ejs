@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %></title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    body { background: #09090b; font-family: 'Inter', sans-serif; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .grid-bg {
+      background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .pcard { transition: transform 0.2s ease, border-color 0.2s, box-shadow 0.2s; }
+    .pcard:hover { transform: translateY(-2px); }
+    .prog-bar  { height: 2px; border-radius: 1px; background: #27272a; overflow: hidden; }
+    .prog-fill { height: 100%; border-radius: 1px; }
+  </style>
+</head>
+<body class="text-zinc-100 min-h-screen">
+  <%- include("header") %>
+
+  <section class="grid-bg py-16 px-6 md:px-16 border-b border-zinc-800">
+    <div class="max-w-7xl mx-auto flex items-center gap-6">
+      <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-violet-500 to-sky-500 flex items-center justify-center text-2xl font-bold text-white mono">
+        <%= user.username.charAt(0).toUpperCase() %>
+      </div>
+      <div>
+        <p class="mono text-xs text-zinc-500 mb-1">// user.profile</p>
+        <h1 class="mono text-3xl font-bold text-white">@<%= user.username %></h1>
+        <p class="text-zinc-500 text-sm mt-1"><%= user.email %></p>
+      </div>
+      <div class="ml-auto">
+        <span class="flex items-center gap-2 mono text-xs text-emerald-400 bg-emerald-400/10 border border-emerald-400/20 px-3 py-1.5 rounded-sm">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block"></span>
+          active
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-6 md:px-16 py-16">
+
+    <!-- Stats -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-12">
+      <div class="pcard bg-zinc-900 border border-zinc-800 rounded-xl p-5 hover:border-violet-500/50 hover:shadow-[0_0_20px_rgba(167,139,250,0.1)]">
+        <div class="text-2xl font-bold text-violet-400 mono">0</div>
+        <div class="text-zinc-500 text-xs mono mt-1">courses_enrolled</div>
+        <div class="prog-bar mt-3"><div class="prog-fill bg-violet-400" style="width:0%"></div></div>
+      </div>
+      <div class="pcard bg-zinc-900 border border-zinc-800 rounded-xl p-5 hover:border-amber-500/50 hover:shadow-[0_0_20px_rgba(245,158,11,0.1)]">
+        <div class="text-2xl font-bold text-amber-400 mono">0</div>
+        <div class="text-zinc-500 text-xs mono mt-1">problems_solved</div>
+        <div class="prog-bar mt-3"><div class="prog-fill bg-amber-400" style="width:0%"></div></div>
+      </div>
+      <div class="pcard bg-zinc-900 border border-zinc-800 rounded-xl p-5 hover:border-pink-500/50 hover:shadow-[0_0_20px_rgba(244,114,182,0.1)]">
+        <div class="text-2xl font-bold text-pink-400 mono">0h</div>
+        <div class="text-zinc-500 text-xs mono mt-1">time_spent</div>
+        <div class="prog-bar mt-3"><div class="prog-fill bg-pink-400" style="width:0%"></div></div>
+      </div>
+      <div class="pcard bg-zinc-900 border border-zinc-800 rounded-xl p-5 hover:border-emerald-500/50 hover:shadow-[0_0_20px_rgba(52,211,153,0.1)]">
+        <div class="text-2xl font-bold text-emerald-400 mono">0</div>
+        <div class="text-zinc-500 text-xs mono mt-1">streak_days</div>
+        <div class="prog-bar mt-3"><div class="prog-fill bg-emerald-400" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <!-- Account info + quick links -->
+    <div class="grid md:grid-cols-2 gap-4">
+
+      <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-7">
+        <p class="mono text-xs text-zinc-500 mb-5">// account_info</p>
+        <div class="flex flex-col gap-4">
+          <div class="flex items-center justify-between py-3 border-b border-zinc-800">
+            <span class="mono text-xs text-zinc-600">username</span>
+            <span class="mono text-xs text-white">@<%= user.username %></span>
+          </div>
+          <div class="flex items-center justify-between py-3 border-b border-zinc-800">
+            <span class="mono text-xs text-zinc-600">email</span>
+            <span class="mono text-xs text-white"><%= user.email %></span>
+          </div>
+          <div class="flex items-center justify-between py-3 border-b border-zinc-800">
+            <span class="mono text-xs text-zinc-600">plan</span>
+            <span class="mono text-xs text-emerald-400">free_tier</span>
+          </div>
+          <div class="flex items-center justify-between py-3">
+            <span class="mono text-xs text-zinc-600">member_since</span>
+            <span class="mono text-xs text-zinc-400">2026</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-7">
+        <p class="mono text-xs text-zinc-500 mb-5">// quick_links</p>
+        <div class="flex flex-col gap-2">
+          <a href="/courses" class="flex items-center justify-between px-4 py-3 rounded-sm border border-zinc-800 hover:border-amber-500/40 hover:bg-zinc-800/50 transition group">
+            <span class="mono text-xs text-zinc-400 group-hover:text-amber-300 transition">browse_courses()</span>
+            <span class="mono text-xs text-amber-400">→</span>
+          </a>
+          <a href="/practice" class="flex items-center justify-between px-4 py-3 rounded-sm border border-zinc-800 hover:border-pink-500/40 hover:bg-zinc-800/50 transition group">
+            <span class="mono text-xs text-zinc-400 group-hover:text-pink-300 transition">open_practice()</span>
+            <span class="mono text-xs text-pink-400">→</span>
+          </a>
+          <a href="/services" class="flex items-center justify-between px-4 py-3 rounded-sm border border-zinc-800 hover:border-sky-500/40 hover:bg-zinc-800/50 transition group">
+            <span class="mono text-xs text-zinc-400 group-hover:text-sky-300 transition">view_services()</span>
+            <span class="mono text-xs text-sky-400">→</span>
+          </a>
+          <a href="/logout" class="flex items-center justify-between px-4 py-3 rounded-sm border border-zinc-800 hover:border-red-500/40 hover:bg-zinc-800/50 transition group">
+            <span class="mono text-xs text-zinc-400 group-hover:text-red-300 transition">logout()</span>
+            <span class="mono text-xs text-red-400">→</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <%- include("footer") %>
+</body>
+</html>

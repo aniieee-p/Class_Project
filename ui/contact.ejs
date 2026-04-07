@@ -9,68 +9,110 @@
   <style>
     body { background: #09090b; font-family: 'Inter', sans-serif; }
     .mono { font-family: 'JetBrains Mono', monospace; }
+    .grid-bg {
+      background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .ccard { transition: transform 0.2s ease, border-color 0.2s, box-shadow 0.2s; }
+    .ccard:hover { transform: translateY(-3px); }
+    .card-violet:hover  { border-color: #a78bfa; box-shadow: 0 0 28px rgba(167,139,250,0.15); }
+    .card-sky:hover     { border-color: #38bdf8; box-shadow: 0 0 28px rgba(56,189,248,0.15); }
+    .card-pink:hover    { border-color: #f472b6; box-shadow: 0 0 28px rgba(244,114,182,0.15); }
+    .card-emerald:hover { border-color: #34d399; box-shadow: 0 0 28px rgba(52,211,153,0.15); }
+    .prog-bar  { height: 2px; border-radius: 1px; background: #27272a; overflow: hidden; }
+    .prog-fill { height: 100%; border-radius: 1px; }
+    .code-input {
+      background: #09090b; border: 1px solid #27272a; color: #e4e4e7;
+      font-family: 'JetBrains Mono', monospace; font-size: 13px;
+      transition: border-color 0.15s, box-shadow 0.15s; outline: none;
+    }
+    .code-input:focus { border-color: #a78bfa; box-shadow: -3px 0 0 0 #a78bfa; }
   </style>
 </head>
 <body class="text-zinc-100 min-h-screen">
   <%- include("header") %>
 
-  <section class="max-w-7xl mx-auto px-6 md:px-16 py-24 grid md:grid-cols-2 gap-16 items-start">
-
-    <!-- Left -->
-    <div>
+  <!-- Hero -->
+  <section class="grid-bg py-20 px-6 md:px-16 border-b border-zinc-800">
+    <div class="max-w-7xl mx-auto">
       <p class="mono text-xs text-zinc-500 mb-4">// contact.md</p>
-      <h1 class="mono text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">Say hello.</h1>
-      <p class="text-zinc-400 leading-relaxed mb-12 max-w-sm">Have a question or feedback? We read every message and reply within 24 hours.</p>
+      <h1 class="mono text-5xl md:text-6xl font-bold text-white mb-4 leading-tight">Say hello.</h1>
+      <p class="text-zinc-400 max-w-md">We read every message and reply within 24 hours.</p>
+    </div>
+  </section>
 
-      <div class="flex flex-col gap-5">
-        <div class="flex items-center gap-4">
-          <span class="mono text-xs text-zinc-600 w-20">email</span>
-          <span class="text-zinc-300 text-sm">support@codelearn.dev</span>
+  <section class="max-w-7xl mx-auto px-6 md:px-16 py-20 grid md:grid-cols-2 gap-10 items-start">
+
+    <!-- Left: contact info cards -->
+    <div class="flex flex-col gap-4">
+
+      <div class="ccard card-violet bg-zinc-900 border border-zinc-800 rounded-xl p-6 flex items-center gap-5 group cursor-pointer"
+           style="background: linear-gradient(145deg, #18181b, #1e1427);">
+        <div class="text-2xl">📧</div>
+        <div class="flex-1">
+          <p class="mono text-xs text-zinc-500 mb-1">email</p>
+          <p class="mono text-sm text-white group-hover:text-violet-300 transition">support@codelearn.dev</p>
         </div>
-        <div class="w-full h-px bg-zinc-800"></div>
-        <div class="flex items-center gap-4">
-          <span class="mono text-xs text-zinc-600 w-20">twitter</span>
-          <span class="text-zinc-300 text-sm">@codelearn</span>
-        </div>
-        <div class="w-full h-px bg-zinc-800"></div>
-        <div class="flex items-center gap-4">
-          <span class="mono text-xs text-zinc-600 w-20">discord</span>
-          <span class="text-zinc-300 text-sm">discord.gg/codelearn</span>
-        </div>
-        <div class="w-full h-px bg-zinc-800"></div>
-        <div class="flex items-center gap-4">
-          <span class="mono text-xs text-zinc-600 w-20">github</span>
-          <span class="text-zinc-300 text-sm">github.com/codelearn</span>
-        </div>
+        <div class="prog-bar w-12"><div class="prog-fill bg-violet-400" style="width:100%"></div></div>
+        <span class="mono text-xs text-violet-400 group-hover:translate-x-1 transition-all">→</span>
       </div>
+
+      <div class="ccard card-sky bg-zinc-900 border border-zinc-800 rounded-xl p-6 flex items-center gap-5 group cursor-pointer"
+           style="background: linear-gradient(145deg, #18181b, #0c1a24);">
+        <div class="text-2xl">🐦</div>
+        <div class="flex-1">
+          <p class="mono text-xs text-zinc-500 mb-1">twitter / x</p>
+          <p class="mono text-sm text-white group-hover:text-sky-300 transition">@codelearn</p>
+        </div>
+        <div class="prog-bar w-12"><div class="prog-fill bg-sky-400" style="width:80%"></div></div>
+        <span class="mono text-xs text-sky-400 group-hover:translate-x-1 transition-all">→</span>
+      </div>
+
+      <div class="ccard card-pink bg-zinc-900 border border-zinc-800 rounded-xl p-6 flex items-center gap-5 group cursor-pointer"
+           style="background: linear-gradient(145deg, #18181b, #1c0f18);">
+        <div class="text-2xl">💬</div>
+        <div class="flex-1">
+          <p class="mono text-xs text-zinc-500 mb-1">discord</p>
+          <p class="mono text-sm text-white group-hover:text-pink-300 transition">discord.gg/codelearn</p>
+        </div>
+        <div class="prog-bar w-12"><div class="prog-fill bg-pink-400" style="width:90%"></div></div>
+        <span class="mono text-xs text-pink-400 group-hover:translate-x-1 transition-all">→</span>
+      </div>
+
+      <div class="ccard card-emerald bg-zinc-900 border border-zinc-800 rounded-xl p-6 flex items-center gap-5 group cursor-pointer"
+           style="background: linear-gradient(145deg, #18181b, #0a1f18);">
+        <div class="text-2xl">🐙</div>
+        <div class="flex-1">
+          <p class="mono text-xs text-zinc-500 mb-1">github</p>
+          <p class="mono text-sm text-white group-hover:text-emerald-300 transition">github.com/codelearn</p>
+        </div>
+        <div class="prog-bar w-12"><div class="prog-fill bg-emerald-400" style="width:70%"></div></div>
+        <span class="mono text-xs text-emerald-400 group-hover:translate-x-1 transition-all">→</span>
+      </div>
+
     </div>
 
-    <!-- Form -->
+    <!-- Right: form -->
     <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-8">
       <p class="mono text-xs text-zinc-500 mb-6">// send_message()</p>
       <form class="flex flex-col gap-5">
         <div>
-          <label class="mono text-xs text-zinc-500 block mb-2">name</label>
-          <input type="text" name="username" placeholder="your name" required
-            class="w-full px-4 py-3 rounded-lg bg-zinc-950 border border-zinc-800 text-white placeholder-zinc-600 focus:outline-none focus:border-zinc-600 transition mono text-sm" />
+          <label class="mono text-xs text-zinc-500 block mb-2">[ name ]</label>
+          <input type="text" name="username" placeholder="your name" required class="code-input w-full px-4 py-3 rounded-sm" />
         </div>
         <div>
-          <label class="mono text-xs text-zinc-500 block mb-2">email</label>
-          <input type="email" name="email" placeholder="you@example.com" required
-            class="w-full px-4 py-3 rounded-lg bg-zinc-950 border border-zinc-800 text-white placeholder-zinc-600 focus:outline-none focus:border-zinc-600 transition mono text-sm" />
+          <label class="mono text-xs text-zinc-500 block mb-2">[ email ]</label>
+          <input type="email" name="email" placeholder="you@domain.com" required class="code-input w-full px-4 py-3 rounded-sm" />
         </div>
         <div>
-          <label class="mono text-xs text-zinc-500 block mb-2">subject</label>
-          <input type="text" name="subject" placeholder="what's this about?"
-            class="w-full px-4 py-3 rounded-lg bg-zinc-950 border border-zinc-800 text-white placeholder-zinc-600 focus:outline-none focus:border-zinc-600 transition mono text-sm" />
+          <label class="mono text-xs text-zinc-500 block mb-2">[ subject ]</label>
+          <input type="text" name="subject" placeholder="what's this about?" class="code-input w-full px-4 py-3 rounded-sm" />
         </div>
         <div>
-          <label class="mono text-xs text-zinc-500 block mb-2">message</label>
-          <textarea name="message" rows="5" placeholder="write your message..." required
-            class="w-full px-4 py-3 rounded-lg bg-zinc-950 border border-zinc-800 text-white placeholder-zinc-600 focus:outline-none focus:border-zinc-600 transition mono text-sm resize-none"></textarea>
+          <label class="mono text-xs text-zinc-500 block mb-2">* message</label>
+          <textarea name="message" rows="5" placeholder="write your message..." required class="code-input w-full px-4 py-3 rounded-sm resize-none"></textarea>
         </div>
-        <button type="submit"
-          class="mono text-sm px-5 py-2.5 rounded-lg bg-white text-zinc-950 hover:bg-zinc-200 transition font-semibold">
+        <button type="submit" class="mono text-sm px-5 py-2.5 rounded-sm bg-gradient-to-r from-violet-500 to-sky-500 text-white hover:from-violet-400 hover:to-sky-400 transition font-semibold">
           send_message()
         </button>
       </form>
@@ -81,4 +123,3 @@
   <%- include("footer") %>
 </body>
 </html>
-

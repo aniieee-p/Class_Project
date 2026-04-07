@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const session = require("express-session");
+const flash = require("connect-flash");
 const courseRoute = require("./routes/courseRoute");
 const userRoute = require("./routes/userRoute");
 const connectDB = require("./db");
@@ -17,53 +18,44 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
 }));
+app.use(flash());
+
+// Make flash + user available in all views
+app.use((req, res, next) => {
+  res.locals.user = req.session.user || null;
+  res.locals.success = req.flash("success")[0] || null;
+  res.locals.error = req.flash("error")[0] || null;
+  next();
+});
+
+// Auth guard middleware
+function requireLogin(req, res, next) {
+  if (!req.session.user) {
+    req.flash("error", "Please login to access that page");
+    return res.redirect("/login");
+  }
+  next();
+}
 
 // View Engine
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "ui"));
 
-// Home route
-app.get("/", (req, res) => {
-  res.render("index", { title: "Home_page", user: req.session.user });
-});
+// Public routes
+app.get("/", (req, res) => res.render("index", { title: "Home" }));
+app.get("/about", (req, res) => res.render("about", { title: "About" }));
+app.get("/services", (req, res) => res.render("service", { title: "Services" }));
+app.get("/contact", (req, res) => res.render("contact", { title: "Contact" }));
+app.get("/login", (req, res) => res.render("login", { title: "Login" }));
+app.get("/register", (req, res) => res.render("register", { title: "Register" }));
 
-// About route
-app.get("/about", (req, res) => {
-  res.render("about", { title: "About_us", user: req.session.user });
-});
+// Protected routes
+app.get("/practice", requireLogin, (req, res) => res.render("practice", { title: "Practice" }));
+app.get("/profile", requireLogin, (req, res) => res.render("profile", { title: "Profile" }));
 
-// Service route
-app.get("/services", (req, res) => {
-  res.render("service", { title: "Service_page", user: req.session.user });
-});
-
-// Contact route
-app.get("/contact", (req, res) => {
-  res.render("contact", { title: "Contact", user: req.session.user });
-});
-
-// Course router
-app.use("/courses", courseRoute);
-
-// User auth routes
+// Routers
+app.use("/courses", requireLogin, courseRoute);
 app.use("/", userRoute);
 
-// Practice Route
-app.get("/practice", (req, res) => {
-  res.render("practice", { title: "Practice Set", user: req.session.user });
-});
-
-// Login form route
-app.get("/login", (req, res) => {
-  res.render("login", { title: "Login Form", user: req.session.user });
-});
-
-// register form route
-app.get("/register", (req, res) => {
-  res.render("register", { title: "Register Form", user: req.session.user });
-});
-
-// Server listen
-app.listen(port, () => {
-  console.log(`Server is up at ${port}`);
-});
+// Server
+app.listen(port, () => console.log(`Server is up at ${port}`));
