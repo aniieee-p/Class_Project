@@ -22,17 +22,17 @@
 <body class="text-zinc-100 min-h-screen">
   <%- include("header") %>
 
-  <section class="grid-bg py-16 px-6 md:px-16 border-b border-zinc-800">
-    <div class="max-w-7xl mx-auto flex items-center gap-6">
-      <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-violet-500 to-sky-500 flex items-center justify-center text-2xl font-bold text-white mono">
+  <section class="grid-bg py-12 px-6 md:px-16 border-b border-zinc-800">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center gap-5">
+      <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-violet-500 to-sky-500 flex items-center justify-center text-xl font-bold text-white mono shrink-0">
         <%= user.username.charAt(0).toUpperCase() %>
       </div>
-      <div>
+      <div class="flex-1 min-w-0">
         <p class="mono text-xs text-zinc-500 mb-1">// user.profile</p>
-        <h1 class="mono text-3xl font-bold text-white">@<%= user.username %></h1>
-        <p class="text-zinc-500 text-sm mt-1"><%= user.email %></p>
+        <h1 class="mono text-2xl md:text-3xl font-bold text-white truncate">@<%= user.username %></h1>
+        <p class="text-zinc-500 text-sm mt-1 truncate"><%= user.email %></p>
       </div>
-      <div class="ml-auto">
+      <div class="sm:ml-auto">
         <span class="flex items-center gap-2 mono text-xs text-emerald-400 bg-emerald-400/10 border border-emerald-400/20 px-3 py-1.5 rounded-sm">
           <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block"></span>
           active
