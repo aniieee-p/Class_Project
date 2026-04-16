@@ -13,6 +13,7 @@ const port = 8080;
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "public")));
 app.use(session({
   secret: "elearning_secret",
   resave: false,
